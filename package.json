@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.71.0",
+    "react-native-linear-gradient": "^2.6.2",
     "react-native-swiper": "^1.6.0"
   },
   "devDependencies": {

@@ -1,21 +1,17 @@
 import * as React from 'react';
-import {View, Image, StyleSheet, SafeAreaView, Dimensions} from 'react-native';
-import CustomButton from './Button';
-const {width, height} = Dimensions.get('screen');
-export default function Layout({children, swiperRef, keyNumber}) {
+import {View, StyleSheet, Image} from 'react-native';
+import CustomButton from '../components/Button';
+function Layout({children, swiperRef, keyNumber}) {
   return (
-    <View style={{width: width, height: height}}>
-      <View>{children}</View>
-      <View>
-        <View style={styles.logoContainer}>
+    <View style={styles.layout}>
+      <View style={styles.layoutMain}>{children}</View>
+      <View style={styles.layoutFooter}>
+        <View>
           <Image
-            style={styles.logo}
-            source={require('../../assets/images/goscore_logo.png')}
-          />
+            source={require('../../assets/images/goscore_logo.png')}></Image>
         </View>
         <View style={styles.buttonWrapper}>
           <View style={styles.hairLine} />
-
           <CustomButton
             buttonColor="#FFFFFF"
             text={`${keyNumber === 3 ? 'Getting started' : 'Next'}`}
@@ -30,14 +26,26 @@ export default function Layout({children, swiperRef, keyNumber}) {
     </View>
   );
 }
+
+export default Layout;
 const styles = StyleSheet.create({
-  logoContainer: {
-    paddingTop: 40,
-    alignItems: 'center',
+  layout: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    paddingTop: 75,
+    paddingBottom: 55,
   },
-  logo: {
-    width: 171,
-    height: 48,
+  layoutMain: {
+    paddingLeft: 50,
+    paddingRight: 23,
+  },
+  layoutFooter: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: 31,
   },
   buttonWrapper: {
     display: 'flex',
@@ -55,7 +63,6 @@ const styles = StyleSheet.create({
     borderColor: '#2E6CC6',
     borderRadius: 50,
   },
-
   hairLine: {
     flex: 1,
     height: 1,
