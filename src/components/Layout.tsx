@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     paddingTop: 75,
     paddingBottom: 55,
     overflow: 'hidden',
+    position: 'relative',
   },
   layoutMain: {
     paddingLeft: 50,

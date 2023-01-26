@@ -6,15 +6,23 @@ import {
   TouchableOpacity,
   Image,
   Linking,
+  ImageBackground,
 } from 'react-native';
 import Layout from '../components/Layout';
 const SpendingTrackingScreen = ({swiperRef, keyNumber}) => {
   return (
     <Layout swiperRef={swiperRef} keyNumber={keyNumber}>
-      <Image
-        source={require('../../assets/images/spending_tracking.png')}
-        style={{position: 'absolute', top: '-83%', left: '-70%'}}></Image>
-      <View style={{paddingTop: 50, paddingLeft: 4, paddingRight: 14}}>
+      <ImageBackground
+        source={require('../../assets/images/introduction-bg.png')}
+        resizeMode="contain"
+        style={{
+          width: 869,
+          height: 555,
+          top: '-60%',
+          left: '-30%',
+          position: 'absolute',
+        }}></ImageBackground>
+      <View style={{paddingTop: 40, paddingLeft: 4, paddingRight: 14}}>
         <Text style={styles.baseTitle}>
           <Text style={styles.innerTitle}>Spending tracking</Text>
         </Text>
