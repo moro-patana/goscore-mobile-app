@@ -8,7 +8,8 @@ function Layout({children, swiperRef, keyNumber}) {
       <View style={styles.layoutFooter}>
         <View>
           <Image
-            source={require('../../assets/images/goscore_logo.png')}></Image>
+            source={require('../../assets/images/goscore_logo.png')}
+            style={{overflow: 'hidden'}}></Image>
         </View>
         <View style={styles.buttonWrapper}>
           <View style={styles.hairLine} />
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingTop: 75,
     paddingBottom: 55,
+    overflow: 'hidden',
   },
   layoutMain: {
     paddingLeft: 50,

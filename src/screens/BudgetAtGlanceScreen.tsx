@@ -1,27 +1,20 @@
 import * as React from 'react';
-import {Text, StyleSheet, ImageBackground, Dimensions} from 'react-native';
+import {Text, StyleSheet, Image} from 'react-native';
 import Layout from '../components/Layout';
-const {height} = Dimensions.get('screen');
+
 const BudgetAtGlanceScreen = ({swiperRef, keyNumber}) => {
   return (
     <Layout swiperRef={swiperRef} keyNumber={keyNumber}>
-      <ImageBackground
-        source={require('../../assets/images/introduction-bg.png')}
-        imageStyle={{
-          resizeMode: 'contain',
-          width: 600,
-          height: height,
-          top: '-90%',
-          left: '75%',
-        }}>
-        <Text style={styles.baseTitle}>
-          Your Budget <Text style={styles.innerTitle}>at a glance</Text>
-        </Text>
-        <Text style={styles.description}>
-          You are just 2 minutes away from gaining control over your personal
-          economy
-        </Text>
-      </ImageBackground>
+      <Image
+        source={require('../../assets/images/budget_at_glance.png')}
+        style={{position: 'absolute', top: '-51%', right: '-105%'}}></Image>
+      <Text style={styles.baseTitle}>
+        Your Budget <Text style={styles.innerTitle}>at a glance</Text>
+      </Text>
+      <Text style={styles.description}>
+        You are just 2 minutes away from gaining control over your personal
+        economy
+      </Text>
     </Layout>
   );
 };

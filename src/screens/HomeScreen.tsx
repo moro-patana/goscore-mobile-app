@@ -18,7 +18,7 @@ export default function HomeScreen() {
         start={{x: 1, y: 0}}>
         <View>
           <Image
-            source={require('../../assets/images/home.png')}
+            source={require('../../assets/images/home_screen_bg.png')}
             style={{width: '100%'}}></Image>
         </View>
         <View style={styles.logoContainer}>

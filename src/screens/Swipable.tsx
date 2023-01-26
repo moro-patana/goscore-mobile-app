@@ -4,8 +4,8 @@ import Swiper from 'react-native-swiper';
 import BudgetAtGlanceScreen from './BudgetAtGlanceScreen';
 import SpendingTrackingScreen from './SpendingTrackingScreen';
 import FreeCreditReportScreen from './FreeCreditReportScreen';
-// import Home from './Home';
 import {useRef, useState} from 'react';
+import HomeScreen from './HomeScreen';
 
 const Swipable = () => {
   const swiperRef = useRef(null);
@@ -21,10 +21,10 @@ const Swipable = () => {
       showsPagination={false}
       index={0}
       onIndexChanged={handleIndexChange}>
-      {/* <Home /> */}
-      {/* <BudgetAtGlanceScreen swiperRef={swiperRef} keyNumber={keyNumber} /> */}
+      <HomeScreen />
+      <BudgetAtGlanceScreen swiperRef={swiperRef} keyNumber={keyNumber} />
       <SpendingTrackingScreen swiperRef={swiperRef} keyNumber={keyNumber} />
-      {/* <FreeCreditReportScreen swiperRef={swiperRef} keyNumber={keyNumber} /> */}
+      <FreeCreditReportScreen swiperRef={swiperRef} keyNumber={keyNumber} />
     </Swiper>
   );
 };
