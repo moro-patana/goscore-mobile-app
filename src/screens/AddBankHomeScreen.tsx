@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -9,9 +10,12 @@ import {
   Linking,
 } from 'react-native';
 import CustomButton from '../components/Button';
+import PrivacyPolicyScreen from './PrivacyPolicyScreen';
 const {width, height} = Dimensions.get('window');
 
-export default function AddBankHomeScreen({navigation}) {
+export default function AddBankHomeScreen() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.contentWrapper}>
       <View>
@@ -41,10 +45,16 @@ export default function AddBankHomeScreen({navigation}) {
       <View style={styles.contentFooter}>
         <TouchableOpacity
           style={{transform: [{translateY: 10}]}}
-          onPress={() => navigation.navigate('PrivacyPolicyScreen')}>
+          onPress={() => setModalVisible(true)}>
           <Text style={styles.contentFooterText}>Privacy Policy</Text>
         </TouchableOpacity>
       </View>
+      {modalVisible && (
+        <PrivacyPolicyScreen
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
+      )}
     </View>
   );
 }
