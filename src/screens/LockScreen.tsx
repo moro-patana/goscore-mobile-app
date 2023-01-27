@@ -4,11 +4,12 @@ import {
   Text,
   View,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   ImageBackground,
   Image,
+  Dimensions,
 } from 'react-native';
+
 const LockScreen = () => {
   const [passcode, setPasscode] = useState(['', '', '', '', '', '']);
   const [counter, setCounter] = useState(0);
@@ -45,51 +46,59 @@ const LockScreen = () => {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/images/pin-code-bg.png')}
-        resizeMode="cover">
-        <View style={{marginTop: 75}}>
-          <View>
-            <Text style={styles.passcodeText}>Enter a digital key</Text>
-          </View>
-          <View style={styles.codeContainer}>
-            {passcode.map((code, index) => {
-              let style = code != '' ? styles.code2 : styles.code1;
-              return <View style={style} key={index}></View>;
-            })}
-          </View>
-        </View>
+        source={require('../../assets/images/pin-code-bg.png')}
+        resizeMode="cover"
+        style={{
+          width: 1000,
+          height: 980,
+          position: 'absolute',
+          elevation: 10,
+          bottom: '6%',
+          right: '-75%',
+        }}></ImageBackground>
 
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingTop: 31,
-          }}>
-          <View style={styles.numbersContainer}>
-            {numbers.map(number => {
-              return (
-                <TouchableOpacity
-                  onPress={() => onPressNumber(number.id)}
-                  style={styles.number}
-                  key={number.id}>
-                  <Text style={styles.numberText}>{number.id}</Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+      <View>
+        <View>
+          <Text style={styles.passcodeText}>Enter a digital key</Text>
         </View>
-        <View style={styles.buttons}>
-          <Image source={require('../assets/images/goscore_logo.png')} />
-          <TouchableOpacity onPress={() => onPressCancel()}>
-            <Text style={styles.buttonText}>
-              Reset the key and enter the password
-            </Text>
-          </TouchableOpacity>
+        <View style={styles.codeContainer}>
+          {passcode.map((code, index) => {
+            let style = code != '' ? styles.code2 : styles.code1;
+            return <View style={style} key={index}></View>;
+          })}
         </View>
-      </ImageBackground>
-    </SafeAreaView>
+      </View>
+
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingTop: 31,
+        }}>
+        <View style={styles.numbersContainer}>
+          {numbers.map(number => {
+            return (
+              <TouchableOpacity
+                onPress={() => onPressNumber(number.id)}
+                style={styles.number}
+                key={number.id}>
+                <Text style={styles.numberText}>{number.id}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <Image source={require('../../assets/images/goscore_logo.png')} />
+        <TouchableOpacity onPress={() => onPressCancel()}>
+          <Text style={styles.buttonText}>
+            Reset the key and enter the password
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -98,8 +107,11 @@ export default LockScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'relative',
-    width: '100%',
+    paddingTop: 75,
+    paddingBottom: 69,
   },
   passcodeText: {
     fontSize: 20,
@@ -120,7 +132,7 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 8,
     backgroundColor: '#FFFFFF',
-    margin: 8,
+    margin: 4,
   },
   code2: {
     width: 8,
@@ -132,15 +144,16 @@ const styles = StyleSheet.create({
   numbersContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: 282,
-    height: 348,
+    // width: 293,
+    // height: 348,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 37,
   },
   number: {
-    width: 75,
-    height: 75,
-    borderRadius: 75,
+    width: 83,
+    height: 83,
+    borderRadius: 83,
     margin: 8,
     backgroundColor: '#8EADDA',
     justifyContent: 'center',
@@ -153,14 +166,11 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
   },
-  buttons: {
-    marginTop: 80,
-    marginLeft: 46,
-    marginRight: 46,
-    marginBottom: 46,
+  footer: {
+    flex: 1,
     flexDirection: 'column',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
   buttonText: {
     fontSize: 17,
