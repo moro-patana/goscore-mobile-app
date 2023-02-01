@@ -1,70 +1,78 @@
 import * as React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import CustomButton from '../components/Button';
-function Layout({children, swiperRef, keyNumber}) {
-  return (
-    <View style={styles.layout}>
-      <View style={styles.layoutMain}>{children}</View>
-      <View style={styles.layoutFooter}>
-        <View>
-          <Image
-            source={require('../../assets/images/goscore_logo.png')}
-            style={{overflow: 'hidden'}}></Image>
-        </View>
-        <View style={styles.buttonWrapper}>
-          <View style={styles.hairLine} />
-          <CustomButton
-            buttonColor="#FFFFFF"
-            text={`${keyNumber === 3 ? 'Getting started' : 'Next'}`}
-            textColor={'#2E6CC6'}
-            buttonStyle={styles.button}
-            textStyle={{fontSize: 17}}
-            onPress={() => swiperRef.current?.scrollBy(1)}
-          />
-          <View style={styles.hairLine} />
-        </View>
+import {View, Image, StyleSheet, Dimensions} from 'react-native';
+import {sm} from './SizeHelper';
+import CustomButton from './Button';
+
+const {width} = Dimensions.get('window');
+
+export const Layout = ({children, swiperRef, keyNumber}) => (
+  <View style={styles.container}>
+    <View style={styles.box}>{children}</View>
+    <View style={styles.box2}>
+      <View style={{paddingBottom: 29}}>
+        <Image
+          source={require('../../assets/images/goscore_logo.png')}
+          style={{overflow: 'hidden'}}></Image>
+      </View>
+      <View
+        style={{
+          ...styles.buttonWrapper,
+          paddingLeft: keyNumber === 1 ? Math.round(width * 0.36) : 0,
+        }}>
+        <View
+          style={{
+            ...styles.hairLine,
+            display: keyNumber === 1 ? 'none' : 'flex',
+          }}
+        />
+        <CustomButton
+          buttonColor="#FFFFFF"
+          text={`${keyNumber === 3 ? 'Getting started' : 'Next'}`}
+          textColor={'#2E6CC6'}
+          buttonStyle={styles.button}
+          textStyle={{fontSize: 17}}
+          onPress={() => swiperRef.current?.scrollBy(1)}
+        />
+        <View style={styles.hairLine} />
       </View>
     </View>
-  );
-}
-
+  </View>
+);
 export default Layout;
 const styles = StyleSheet.create({
-  layout: {
+  container: {
     flex: 1,
     width: '100%',
-    height: '100%',
-    paddingTop: 75,
-    paddingBottom: 55,
     overflow: 'hidden',
-    position: 'relative',
   },
-  layoutMain: {
-    paddingLeft: 50,
-    paddingRight: 23,
-  },
-  layoutFooter: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
+  box: {
+    flex: 3,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 31,
+    paddingLeft: Math.round(width * 0.13),
+    paddingRight: Math.round(width * 0.06),
+  },
+  box2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonWrapper: {
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 31,
   },
   button: {
+    borderWidth: 1,
+    borderColor: '#2E6CC6',
+    borderRadius: 50,
     paddingTop: 2,
     paddingLeft: 19,
     paddingRight: 18,
     paddingBottom: 4,
-    borderWidth: 1,
-    borderColor: '#2E6CC6',
-    borderRadius: 50,
+  },
+  buttonText: {
+    fontSize: sm,
+    color: '#2E6CC6',
   },
   hairLine: {
     flex: 1,

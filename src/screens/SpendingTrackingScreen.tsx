@@ -7,55 +7,54 @@ import {
   Image,
   Linking,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import Layout from '../components/Layout';
+const {width, height} = Dimensions.get('window');
+
 const SpendingTrackingScreen = ({swiperRef, keyNumber}) => {
   return (
     <Layout swiperRef={swiperRef} keyNumber={keyNumber}>
       <ImageBackground
-        source={require('../../assets/images/introduction-bg.png')}
-        resizeMode="contain"
+        source={require('../../assets/images/spending_tracking.png')}
+        resizeMode="cover"
         style={{
-          width: 869,
-          height: 555,
-          top: '-60%',
-          left: '-30%',
+          width: width * 2,
+          height: height,
+          top: '-45%',
+          left: '-60%',
           position: 'absolute',
         }}></ImageBackground>
-      <View style={{paddingTop: 40, paddingLeft: 4, paddingRight: 14}}>
-        <Text style={styles.baseTitle}>
-          <Text style={styles.innerTitle}>Spending tracking</Text>
+      <Text style={styles.baseTitle}>
+        <Text style={styles.innerTitle}>Spending tracking</Text>
+      </Text>
+      <View>
+        <Text style={styles.description}>
+          With{' '}
+          <TouchableOpacity
+            style={{transform: [{translateY: 10}]}}
+            onPress={() => Linking.openURL('https://goscore.me')}>
+            <Image
+              source={require('../../assets/images/goscore_logo.png')}
+              style={{width: 107, height: 30}}
+            />
+          </TouchableOpacity>{' '}
+          you'll see all your transactions in a joined feed with the main
+          insights
         </Text>
-        <View>
-          <Text style={styles.description}>
-            With{' '}
-            <TouchableOpacity
-              style={{transform: [{translateY: 10}]}}
-              onPress={() => Linking.openURL('https://goscore.me')}>
-              <Image
-                source={require('../../assets/images/goscore_logo.png')}
-                style={{width: 107, height: 30}}
-              />
-            </TouchableOpacity>{' '}
-            you'll see all your transactions in a joined feed with the main
-            insights
-          </Text>
-        </View>
       </View>
     </Layout>
   );
 };
 export default SpendingTrackingScreen;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   baseTitle: {
     fontStyle: 'normal',
     fontWeight: '700',
     fontSize: 80,
     lineHeight: 92,
     color: '#FFFFFF',
+    paddingBottom: Math.round(width * 0.08),
   },
   innerTitle: {
     fontStyle: 'normal',
@@ -70,6 +69,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 33,
     color: '#C4C4C4',
-    paddingTop: 60,
+    paddingTop: Math.round(width * 0.08),
   },
 });
