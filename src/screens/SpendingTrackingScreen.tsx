@@ -32,7 +32,7 @@ const SpendingTrackingScreen = ({swiperRef, keyNumber}) => {
         <Text style={styles.description}>
           With{' '}
           <TouchableOpacity
-            style={{transform: [{translateY: 10}]}}
+            style={{transform: [{translateY: 35}]}}
             onPress={() => Linking.openURL('https://goscore.me')}>
             <Image
               source={require('../../assets/images/goscore_logo.png')}
