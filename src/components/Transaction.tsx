@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     paddingBottom: 22,
     borderBottomWidth: 1,
     borderBottomColor: '#C4C4C4',
+    width: '100%',
   },
   name: {
     fontSize: 17,
