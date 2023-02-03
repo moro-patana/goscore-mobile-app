@@ -9,7 +9,7 @@ const slides = [
 
 const SliderCard = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={slides}
         renderItem={({item}) => <SlideItem item={item} />}
@@ -24,4 +24,8 @@ const SliderCard = () => {
 
 export default SliderCard;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 60
+  }
+});
