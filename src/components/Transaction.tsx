@@ -3,22 +3,29 @@ import {Image, View, Text, StyleSheet} from 'react-native';
 import {format, parseISO} from 'date-fns'
 
 function Transaction({item}) {
+  console.log(item.amount);
+  
   const formatDate = format(parseISO(item.date), "MM.dd.yy")
   console.log(formatDate);
+  const value = parseFloat(
+    item.amount.replace("NOK", " ").replace(",", "").split(" ")
+  );
+  console.log(value, 'value');
+  
   return (
     <View style={styles.transaction}>
       <View style={{flexDirection: 'row', gap: 13, alignItems: 'center'}}>
         <Image
           style={styles.profile}
-          source={require('../../assets/images/profile.png')}
+          source={{uri:item.account.financialInstitution.logoUrl}}
         />
         <View>
-          <Text style={styles.name}>{item.name}</Text>
-          <Text style={styles.bankName}>{item.bankName}</Text>
+          <Text style={styles.name}>{item.account.financialInstitution.name}</Text>
+          <Text style={styles.bankName}>{item.description}</Text>
         </View>
       </View>
       <View>
-        <Text style={styles.amount}>{item.amount} kr</Text>
+        <Text style={styles.amount}>{value} kr</Text>
         <Text style={styles.date}>{formatDate}</Text>
       </View>
     </View>

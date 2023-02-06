@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import * as React from 'react';
 
 import {
@@ -12,9 +13,14 @@ import {
 
 const {width, height}= Dimensions.get('window')
 const SlideItem = ({item}) => {
+  const period = format(parseISO(item.date), "LLL yy")
+  console.log(period, 'period');
   
   return (
-    <View style={[styles.card,styles.elevation,styles.shadowProp]}>
+    <View>
+    <Text style = {styles.period}>{period}</Text>
+    
+    <View style={[styles.card, styles.elevation, styles.shadowProp]}>
       <View>
       <Text style={styles.title}>spent</Text>
       <Text style={styles.totalSpending}>13.516 Kr</Text>
@@ -31,12 +37,12 @@ const SlideItem = ({item}) => {
             },
           ],
         }}
-        width={width / 1.3}
+        width={width / 1.4}
         height={height / 5}
         yAxisLabel={'$'}
         yAxisSuffix="k"
         chartConfig={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#102463',
           backgroundGradientFrom: '#ffffff',
           backgroundGradientTo: '#ffffff',
           decimalPlaces: 0,
@@ -60,28 +66,34 @@ const SlideItem = ({item}) => {
         
       />
     </View>
+    </View>
   );
 };
 export default SlideItem;
 
 const styles = StyleSheet.create({
+  
   card: {
-    margin: 10,
-    backgroundColor: 'white',
-    height: height / 3.5,
+    padding: 8,
+    backgroundColor: '#ffffff',
+    width: width / 1.3,
+    height: height / 3.6,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
     borderRadius: 13,
-    padding: 16
+    margin: 10
   },
   elevation: {  
     shadowColor: '#52006A',  
     elevation: 20,  
   },
   shadowProp: {  
-    shadowOffset: {width: -2, height: 4},  
+    shadowOffset: {width: 0, height: 3},  
     shadowColor: '#171717',  
     shadowOpacity: 0.2,  
-    shadowRadius: 3,  
-  },  
+    shadowRadius: 5,  
+  },    
   title: {fontSize: 13,
     lineHeight: 18,
     fontWeight: '500',
@@ -92,5 +104,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#102463',
     paddingBottom:8
+  },
+  period : {
+    fontSize: 17,
+    fontWeight: '400',
+    color: '#999999',
+    paddingLeft: 10
   }
 })
