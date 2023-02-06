@@ -1,61 +1,25 @@
-// import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import * as React from 'react';
-// const {width, height} = Dimensions.get('screen');
 
-// import {LineChart} from 'react-native-charts-wrapper';
-
-// const Chart = ({item}) => {
-//   return (
-//     <View style={[styles.container, styles.elevation]}>
-//       <LineChart
-//         style={styles.chart}
-//         data={{
-//           dataSets: [{label: 'Spent', values: [{y: 1}, {y: 2}, {y: 1}]}],
-//         }}
-//       />
-//     </View>
-//   );
-// };
-
-// export default Chart;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     width: width / 1.2,
-//     height: height / 3,
-//     flex: 1,
-//     backgroundColor: 'white',
-//     paddingTop: 18,
-//     paddingHorizontal: 11,
-//     paddingBottom: 21,
-//     borderRadius: 13,
-//     marginVertical: 20,
-//     marginHorizontal: 10,
-//   },
-//   elevation: {
-//     shadowColor: 'black',
-//     elevation: 10,
-//   },
-//   chart: {
-//     flex: 1,
-//   },
-//   title: {
-//     fontSize: 24,
-//     fontWeight: 'bold',
-//     color: '#333',
-//   },
-// });
 import {
   Text,
   Dimensions,
+  View,
+  StyleSheet,
 } from 'react-native';
 import {
   LineChart,
 } from 'react-native-chart-kit';
+
+const {width, height}= Dimensions.get('window')
 const SlideItem = ({item}) => {
+  
   return (
-    <>
-      {/* <Text>{item.title}</Text> */}
+    <View style={[styles.card,styles.elevation,styles.shadowProp]}>
+      <View>
+      <Text style={styles.title}>spent</Text>
+      <Text style={styles.totalSpending}>13.516 Kr</Text>
+      </View>
+      
       <LineChart
         data={{
           labels: ['05', '10', '15', '20', '25'],
@@ -67,8 +31,8 @@ const SlideItem = ({item}) => {
             },
           ],
         }}
-        width={Dimensions.get('window').width - 16}
-        height={220}
+        width={width / 1.3}
+        height={height / 5}
         yAxisLabel={'$'}
         yAxisSuffix="k"
         chartConfig={{
@@ -78,9 +42,7 @@ const SlideItem = ({item}) => {
           decimalPlaces: 0,
           color: (opacity = 0.82) => `rgba(46, 108, 198,${opacity})`,
           labelColor: (opacity = 1) => `rgba(196, 196, 196,${opacity})`,
-          style: {
-            borderRadius: 16,
-          },
+         
           propsForDots: {
             r: "6",
             strokeWidth: "5",
@@ -95,12 +57,40 @@ const SlideItem = ({item}) => {
         
         }}
         bezier
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
+        
       />
-    </>
+    </View>
   );
 };
-export default SlideItem
+export default SlideItem;
+
+const styles = StyleSheet.create({
+  card: {
+    margin: 10,
+    backgroundColor: 'white',
+    height: height / 3.5,
+    borderRadius: 13,
+    padding: 16
+  },
+  elevation: {  
+    shadowColor: '#52006A',  
+    elevation: 20,  
+  },
+  shadowProp: {  
+    shadowOffset: {width: -2, height: 4},  
+    shadowColor: '#171717',  
+    shadowOpacity: 0.2,  
+    shadowRadius: 3,  
+  },  
+  title: {fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '500',
+    color: '#102463'},
+  totalSpending: {
+    fontSize: 17,
+    lineHeight: 23,
+    fontWeight: '700',
+    color: '#102463',
+    paddingBottom:8
+  }
+})

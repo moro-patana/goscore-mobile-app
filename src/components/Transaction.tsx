@@ -1,7 +1,10 @@
 import * as React from 'react';
 import {Image, View, Text, StyleSheet} from 'react-native';
+import {format, parseISO} from 'date-fns'
 
-function Transaction() {
+function Transaction({item}) {
+  const formatDate = format(parseISO(item.date), "MM.dd.yy")
+  console.log(formatDate);
   return (
     <View style={styles.transaction}>
       <View style={{flexDirection: 'row', gap: 13, alignItems: 'center'}}>
@@ -10,13 +13,13 @@ function Transaction() {
           source={require('../../assets/images/profile.png')}
         />
         <View>
-          <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.bankName}>Sparebanken Vest</Text>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.bankName}>{item.bankName}</Text>
         </View>
       </View>
       <View>
-        <Text style={styles.amount}>-50 kr</Text>
-        <Text style={styles.date}>02.08.19</Text>
+        <Text style={styles.amount}>{item.amount} kr</Text>
+        <Text style={styles.date}>{formatDate}</Text>
       </View>
     </View>
   );
@@ -28,8 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 22,
-    paddingBottom: 22,
+    paddingVertical: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#C4C4C4',
     width: '100%',

@@ -17,6 +17,8 @@ const SliderCard = () => {
         pagingEnabled
         snapToAlignment="center"
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(item,index)=> index.toString()}
+        initialScrollIndex={2}
       />
     </View>
   );
@@ -26,6 +28,6 @@ export default SliderCard;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60
+    justifyContent: 'center',
   }
 });

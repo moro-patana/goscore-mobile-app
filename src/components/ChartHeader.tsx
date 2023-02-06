@@ -17,10 +17,9 @@ function ChartHeader({income, spendings}) {
         resizeMode="cover"
         style={{
           width: width,
-          height: height / 4,
+          height: height / 4.5,
           position: 'absolute',
-          top: '-40%',
-          //   elevation: 3,
+          top: '-100%',
         }}></ImageBackground>
       <View style={styles.header}>
         <View style={styles.headerItem}>
@@ -39,7 +38,7 @@ function ChartHeader({income, spendings}) {
 export default ChartHeader;
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 0.7,
     width: '100%',
     overflow: 'hidden',
     justifyContent: 'center',
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     width: '100%',
-    bottom: 30,
+    bottom: '4%',
   },
   headerItem: {
     flexDirection: 'column',

@@ -6,18 +6,38 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  FlatList,
 } from 'react-native';
 import Transaction from '../components/Transaction';
-import {sm} from '../components/SizeHelper';
+import { sm } from '../components/SizeHelper';
 import ChartHeader from '../components/ChartHeader';
 import CustomSwitch from '../components/CustomSwitch';
+import SliderCard from '../components/SliderCard';
 
 function TransactionsScreen() {
   const onSelectSwitch = index => {
-    // alert('Selected index: ' + index);
     console.log('selected');
   };
-
+  const TransationsData = [
+    {
+      name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-01T07:39:09.269Z'
+    },
+    {
+      name: 'goscore AS', profile: '../../assets/images/profile.png', bankName: 'Visa Gold 4507', amount: 30000, date: '2023-02-03T07:39:09.269Z'
+    },
+    {
+      name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-03T07:39:09.269Z'
+    },
+    {
+      name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-01T07:39:09.269Z'
+    },
+    {
+      name: 'goscore AS', profile: '../../assets/images/profile.png', bankName: 'Visa Gold 4507', amount: 30000, date: '2023-02-01T07:39:09.269Z'
+    },
+    {
+      name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-02T07:39:09.269Z'
+    },
+  ]
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -27,7 +47,8 @@ function TransactionsScreen() {
         </TouchableOpacity>
       </View>
       <ChartHeader income={34.65} spendings={13.516} />
-      <View style={{marginHorizontal: 28}}>
+      <SliderCard />
+      <View style={{ marginHorizontal: 28, marginTop: 30 }}>
         <CustomSwitch
           selectionMode={1}
           roundCorner={true}
@@ -37,8 +58,15 @@ function TransactionsScreen() {
           selectionColor={'white'}
         />
       </View>
-      <View style={{flex: 6, paddingLeft: 15, paddingRight: 17}}>
-        <Transaction />
+      <View style={{ flex: 2, paddingLeft: 15, paddingRight: 17, paddingTop: 20 }}>
+        <FlatList
+          data={TransationsData}
+          renderItem={({ item }) => <Transaction item={item} />}
+          pagingEnabled
+          snapToAlignment="center"
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
     </SafeAreaView>
   );
@@ -52,7 +80,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   header: {
-    flex: 1,
+    flex: 0.4,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
