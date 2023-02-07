@@ -13,27 +13,10 @@ import { sm } from '../components/SizeHelper';
 import ChartHeader from '../components/ChartHeader';
 import CustomSwitch from '../components/CustomSwitch';
 import SliderCard from '../components/SliderCard';
+import { format } from 'date-fns';
+import { parseISO } from 'date-fns/fp';
 
-const TransationsData = [
-  {
-    name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-01T07:39:09.269Z'
-  },
-  {
-    name: 'goscore AS', profile: '../../assets/images/profile.png', bankName: 'Visa Gold 4507', amount: 30000, date: '2023-02-03T07:39:09.269Z'
-  },
-  {
-    name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-03T07:39:09.269Z'
-  },
-  {
-    name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-01T07:39:09.269Z'
-  },
-  {
-    name: 'goscore AS', profile: '../../assets/images/profile.png', bankName: 'Visa Gold 4507', amount: 30000, date: '2023-02-01T07:39:09.269Z'
-  },
-  {
-    name: 'John Doe', profile: '../../assets/images/profile.png', bankName: 'Sparebanken Vest', amount: -50, date: '2023-02-02T07:39:09.269Z'
-  },
-]
+
 const data = [
   {
   account: {
@@ -50,7 +33,7 @@ const data = [
   ownership: 1,
   type: "checking",
   updatedAt: "2021-10-04T03:48:05Z"},
-  amount: "21,216.00 NOK",
+  amount: "21.00 NOK",
   category: {
   name:"other",
   top: "salary",
@@ -91,15 +74,15 @@ const data = [
   bookedBalance: "26,137.40 NOK",
   financialInstitution: {
   id: "d8b65f2eedf349679d00252e1e4f6875",
-  logoUrl: "https://cdn.tink.se/provider-images/no/no-nordea.png",
-  name: "Nordea"},
+  logoUrl: "https://cdn.tink.se/provider-images/uk/uk-revolut.png",
+  name: "Revolut"},
   holderName: "Olav Nordmann",
   id: "ed18cb7e78c548ca92997402db63d460",
   name: "BRUKSKONTO",
   ownership: 1,
   type: "checking",
   updatedAt: "2021-10-04T03:48:05Z"},
-  amount: "21,216.00 NOK",
+  amount: "2,116.00 NOK",
   category: {
   name:"other",
   top: "salary",
@@ -115,7 +98,7 @@ const data = [
   bookedBalance: "26,137.40 NOK",
   financialInstitution: {
   id: "d8b65f2eedf349679d00252e1e4f6875",
-  logoUrl: "https://cdn.tink.se/provider-images/no/no-nordea.png",
+  logoUrl: "https://cdn.tink.se/provider-images/no/no-sparebank-1-smn.png",
   name: "Nordea",
   },
   holderName: "Olav Nordmann",
@@ -124,7 +107,32 @@ const data = [
   ownership: 1,
   type: "checking",
   updatedAt: "2021-10-04T03:48:05Z"},
-  amount: "-1,871.02 NOK",
+  amount: "-1,71.02 NOK",
+  category: {
+  name: "other",
+  top: "misc",
+  type: "expenses"},
+  date: "2023-02-04",
+  description: "Telia Norge As, Telia",
+  originalDescription: "TELIA NORGE AS, Telia"
+},
+{
+  account: {
+  accountNumber: "NO3465806826728",
+  availableBalance: "26,137.40 NOK",
+  bookedBalance: "26,137.40 NOK",
+  financialInstitution: {
+  id: "d8b65f2eedf349679d00252e1e4f6875",
+  logoUrl: "https://cdn.tink.se/provider-images/no/no-sparebank-1-smn.png",
+  name: "Nordea",
+  },
+  holderName: "Olav Nordmann",
+  id: "ed18cb7e78c548ca92997402db63d460",
+  name: "BRUKSKONTO",
+  ownership: 1,
+  type: "checking",
+  updatedAt: "2021-10-04T03:48:05Z"},
+  amount: "171.02 NOK",
   category: {
   name: "other",
   top: "misc",
@@ -141,6 +149,31 @@ const data = [
   financialInstitution: {
   id: "d8b65f2eedf349679d00252e1e4f6875",
   logoUrl: "https://cdn.tink.se/provider-images/no/no-nordea.png",
+  name: "Nordea",
+  },
+  holderName: "Olav Nordmann",
+  id: "ed18cb7e78c548ca92997402db63d460",
+  name: "BRUKSKONTO",
+  ownership: 1,
+  type: "checking",
+  updatedAt: "2021-10-04T03:48:05Z"},
+  amount: "871.02 NOK",
+  category: {
+  name: "other",
+  top: "misc",
+  type: "expenses"},
+  date: "2023-02-23",
+  description: "Mg Tech",
+  originalDescription: "MG Tech AS"
+},
+{
+  account: {
+  accountNumber: "NO3465806826728",
+  availableBalance: "26,137.40 NOK",
+  bookedBalance: "26,137.40 NOK",
+  financialInstitution: {
+  id: "d8b65f2eedf349679d00252e1e4f6875",
+  logoUrl: "https://cdn.tink.se/provider-images/no/no-nordea.png",
   name: "Nordea"},
   holderName: "Olav Nordmann",
   id: "ed18cb7e78c548ca92997402db63d460",
@@ -148,12 +181,12 @@ const data = [
   ownership: 1,
   type: "checking",
   updatedAt: "2021-10-04T03:48:05Z"},
-  amount: "21,216.00 NOK",
+  amount: "20.00 NOK",
   category: {
   name:"other",
   top: "salary",
   type: "income"},
-  date: "2023-12 -23",
+  date: "2022-12-23",
   description: "REMA 1000",
   originalDescription: "REMA MARKEN C/O REMA 100 BERGEN"
 },
@@ -173,28 +206,72 @@ const data = [
   ownership: 1,
   type: "checking",
   updatedAt: "2021-10-04T03:48:05Z"},
-  amount: "-1,871.02 NOK",
+  amount: "-871.02 NOK",
   category: {
   name: "other",
   top: "misc",
   type: "expenses"},
-  date: "2023-12-23",
+  date: "2022-12-23",
   description: "Mg Tech",
   originalDescription: "MG Tech AS"
 }
 ]
 function TransactionsScreen() {
-  const [transactionsData, setransactionsData] = React.useState([TransationsData])
   const onSelectSwitch = index => {
     console.log('selected');
   };
 
-  const onViewableItemsChanged = ({ viewableItems, changed }) => {
-    console.log("Visible items are", changed.map(i => i.item));
-    // return viewableItems
-    // console.log("Visible items are", viewableItems);
-    // console.log("Changed in this iteration", changed);
+  const [prevDate, setPrevDate] = React.useState('');
+  const [activeIndex, setActiveIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    const previous = data.reduce((a, b) => {
+      return new Date(a.date) < new Date(b.date) ? a : b;
+    });
+    setPrevDate( format(parseISO(previous.date), 'MMM yy'))
+  }, [])
+  
+
+const viewabilityConfig = React.useRef({
+  itemVisiblePercentThreshold: 50,
+  waitForInteraction: true,
+  minimumViewTime: 5,
+})
+
+const onViewableItemsChanged = React.useRef(({ viewableItems }) => {
+  const index = viewableItems.map(v => v.index);
+  
+  const currentDate = viewableItems.map(v=> v.item).map(i => i.date);
+  setPrevDate(String(currentDate))
+  setActiveIndex(index)
+})
+const filteredTransactions = data.filter((transaction) =>  format(parseISO(transaction.date), 'MMM yy') === prevDate )
+
+  const mapper = single => {
+    let dt = format(parseISO(single.date), 'MMM yy')
+    let amount = parseFloat(
+      single.amount.replace("NOK", " ").replace(",", "").split(" ")
+    );;
+    return { date: dt, amount: [amount] };
   }
+  
+  const reducer = (group, current) => {
+    let i = group.findIndex(single => (single.date == current.date));
+   
+    if (i == -1) {
+      return [ ...group, current ];
+    }
+  
+    group[i].amount = [...group[i].amount, ...current.amount];
+    return group;
+  };
+  
+  
+  const sortedData = data.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+  const spendingsData = sortedData.map(mapper).reduce(reducer, []);
+
+  const totalSpending = spendingsData.map(spending => spending.amount.reduce((partialSum, a) => partialSum + a, 0));
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -203,8 +280,8 @@ function TransactionsScreen() {
           <Image source={require('../../assets/images/plus-icon.png')}></Image>
         </TouchableOpacity>
       </View>
-      <ChartHeader income={34.65} spendings={13.516} />
-      <SliderCard onViewableItemsChanged={onViewableItemsChanged} />
+      <ChartHeader income={34.65} spendings={totalSpending[activeIndex]}/>
+      <SliderCard onViewableItemsChanged={onViewableItemsChanged} spendingsData={spendingsData} viewabilityConfig={viewabilityConfig} totalSpending={totalSpending} />
       <View style={{ marginHorizontal: 28, marginTop: 20, flex: 0.4 }}>
         <CustomSwitch
           selectionMode={1}
@@ -217,7 +294,7 @@ function TransactionsScreen() {
       </View>
       <View style={{ flex: 3, paddingLeft: 15, paddingRight: 17, paddingTop: 20 }}>
         <FlatList
-          data={data}
+          data={filteredTransactions}
           renderItem={({ item }) => <Transaction item={item} />}
           pagingEnabled
           snapToAlignment="center"

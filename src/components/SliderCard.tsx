@@ -1,27 +1,28 @@
 import * as React from 'react';
 
-import {  StyleSheet, SafeAreaView, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, Dimensions} from 'react-native';
 import SlideItem from './SlideItem';
-const slides = [
-  {title: 'Slide1', description: 'this is slide 1', date: '2023-02-02T07:39:09.269Z'},
-  {title: 'Slide2', description: 'this is slide 2', date: '2023-03-03T07:39:09.269Z'},
-  {title: 'Slide3', description: 'this is slide 3', date: '2023-01-01T07:39:09.269Z'},
-];
-const {width, height} = Dimensions.get('window')
-export default function SliderCard({ onViewableItemsChanged}) {
 
- const sortedData = slides.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
-console.log('sortedData', sortedData);
+const { width, height } = Dimensions.get('window')
+export default function SliderCard({ onViewableItemsChanged, spendingsData,viewabilityConfig, totalSpending }) {
+  const flatList = React.useRef<FlatList>(null);
 
   return (
     <SafeAreaView style={styleSheet.MainContainer}>
       <FlatList
-        data={sortedData}
-        renderItem={({ item}) => <SlideItem item={item} />}
+        ref={flatList}
+        data={spendingsData}
+        renderItem={({ item, index }) => <SlideItem item={item} totalSpending={totalSpending[index]} />}
         horizontal={true}
-        initialScrollIndex={1}
         showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={onViewableItemsChanged}
+        onViewableItemsChanged={onViewableItemsChanged.current}
+        viewabilityConfig={viewabilityConfig.current}
+        onScrollToIndexFailed={info => {
+          const wait = new Promise(resolve => setTimeout(resolve, 500));
+          wait.then(() => {
+            flatList.current?.scrollToIndex({ index: info.index, animated: true });
+          });
+        }}
       />
 
     </SafeAreaView>
@@ -53,15 +54,15 @@ const styleSheet = StyleSheet.create({
     color: 'red',
     textAlign: 'center'
   },
-  elevation: {  
-    shadowColor: '#52006A',  
-    elevation: 20,  
+  elevation: {
+    shadowColor: '#52006A',
+    elevation: 20,
   },
-  shadowProp: {  
-    shadowOffset: {width: 0, height: 3},  
-    shadowColor: '#171717',  
-    shadowOpacity: 0.2,  
-    shadowRadius: 5,  
-  },  
+  shadowProp: {
+    shadowOffset: { width: 0, height: 3 },
+    shadowColor: '#171717',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+  },
 
 });

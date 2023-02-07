@@ -3,14 +3,11 @@ import {Image, View, Text, StyleSheet} from 'react-native';
 import {format, parseISO} from 'date-fns'
 
 function Transaction({item}) {
-  console.log(item.amount);
   
   const formatDate = format(parseISO(item.date), "MM.dd.yy")
-  console.log(formatDate);
   const value = parseFloat(
     item.amount.replace("NOK", " ").replace(",", "").split(" ")
   );
-  console.log(value, 'value');
   
   return (
     <View style={styles.transaction}>

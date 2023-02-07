@@ -1,4 +1,3 @@
-import { format, parseISO } from 'date-fns';
 import * as React from 'react';
 
 import {
@@ -12,18 +11,16 @@ import {
 } from 'react-native-chart-kit';
 
 const {width, height}= Dimensions.get('window')
-const SlideItem = ({item}) => {
-  const period = format(parseISO(item.date), "LLL yy")
-  console.log(period, 'period');
+const SlideItem = ({item, totalSpending}) => {
   
   return (
     <View>
-    <Text style = {styles.period}>{period}</Text>
+    <Text style = {styles.period}>{item.date}</Text>
     
     <View style={[styles.card, styles.elevation, styles.shadowProp]}>
       <View>
       <Text style={styles.title}>spent</Text>
-      <Text style={styles.totalSpending}>13.516 Kr</Text>
+      <Text style={styles.totalSpending}>{totalSpending} Kr</Text>
       </View>
       
       <LineChart
@@ -31,9 +28,7 @@ const SlideItem = ({item}) => {
           labels: ['05', '10', '15', '20', '25'],
           datasets: [
             {
-              data: [
-                20, 25, 50, 12, 100
-              ],
+              data: item.amount,
             },
           ],
         }}
