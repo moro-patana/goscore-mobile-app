@@ -278,12 +278,6 @@ const filteredTransactions = data.filter((transaction) =>  format(parseISO(trans
   
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>My activity</Text>
-        <TouchableOpacity>
-          <Image source={require('../../assets/images/plus-icon.png')}></Image>
-        </TouchableOpacity>
-      </View>
       <ChartHeader income={34.65} spendings={totalSpending[activeIndex]}/>
       <SliderCard onViewableItemsChanged={onViewableItemsChanged} spendingsData={spendingsData} viewabilityConfig={viewabilityConfig} totalSpending={totalSpending} />
       <View style={{ marginHorizontal: 28, marginTop: 20, flex: 0.4 }}>
@@ -296,7 +290,7 @@ const filteredTransactions = data.filter((transaction) =>  format(parseISO(trans
           selectionColor={'white'}
         />
       </View>
-      <View style={{ flex: 3, paddingLeft: 15, paddingRight: 17, paddingTop: 20 }}>
+      <View style={{ flex: 2, paddingLeft: 15, paddingRight: 17, paddingTop: 20 }}>
         <FlatList
           data={filteredTransactions}
           renderItem={({ item }) => selectedTab === 1 ? <Transaction item={item} />:<Category item={item} totalSpending={totalSpending}/>}
@@ -316,34 +310,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     position: 'relative',
-  },
-  header: {
-    flex: 0.4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    elevation: 1,
-    paddingLeft: 15,
-    paddingRight: 17,
-  },
-  title: {
-    fontSize: sm,
-    fontWeight: '400',
-    lineHeight: 22,
-    color: '#2E6CC6',
-  },
-  buttonContainer: {
-    backgroundColor: 'rgba(118, 118, 128, 0.12)',
-    borderRadius: 14,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 28,
-  },
-  button: {
-    fontSize: 13,
-    paddingVertical: 3,
-    paddingHorizontal: 8,
-    width: '50%',
-    borderRadius: 15,
+    backgroundColor: '#FFFFFF'
   },
 });

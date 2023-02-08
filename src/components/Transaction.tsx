@@ -22,7 +22,7 @@ function Transaction({item}) {
         </View>
       </View>
       <View style={{flexDirection: 'column', alignItems: 'flex-end'}}>
-        <Text style={styles.amount}>{value} kr</Text>
+        <Text style={styles.amount}>{Math.abs(value)} kr</Text>
         <Text style={styles.date}>{formatDate}</Text>
       </View>
     </View>

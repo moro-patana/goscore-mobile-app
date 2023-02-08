@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.4",
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "date-fns": "^2.29.3",
@@ -23,7 +24,8 @@
     "react-native-shadow-2": "^7.0.6",
     "react-native-svg": "^13.8.0",
     "react-native-swiper": "^1.6.0",
-    "react-native-touch-id": "^4.4.1"
+    "react-native-touch-id": "^4.4.1",
+    "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

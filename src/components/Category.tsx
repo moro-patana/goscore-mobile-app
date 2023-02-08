@@ -68,7 +68,7 @@ function Category({ item, totalSpending }) {
                 </View>
             </View>
             <View>
-                <Text style={styles.amount}>{value} kr</Text>
+                <Text style={styles.amount}>{Math.abs(value)} kr</Text>
                 <View style={styles.percentageWrapper}>
                     <Text style={{...styles.percentage, color: value > 0 ? '#00DB90' : '#EF253D'}}>{percentResult}%</Text>
                     <Image source={value > 0 ? ArrowUp : ArrowDown} ></Image>

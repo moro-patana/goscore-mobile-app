@@ -28,7 +28,7 @@ function ChartHeader({income, spendings}) {
         </View>
         <View style={styles.headerItem}>
           <Text style={styles.title}>Spendings</Text>
-          <Text style={styles.amount}>{spendings} Kr</Text>
+          <Text style={styles.amount}>{Math.abs(spendings)} Kr</Text>
         </View>
       </View>
     </View>

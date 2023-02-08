@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet, SafeAreaView, FlatList, Dimensions} from 'react-native';
+import { StyleSheet, View, FlatList, Dimensions} from 'react-native';
 import SlideItem from './SlideItem';
 
 const { width, height } = Dimensions.get('window')
@@ -8,7 +8,7 @@ export default function SliderCard({ onViewableItemsChanged, spendingsData,viewa
   const flatList = React.useRef<FlatList>(null);
 
   return (
-    <SafeAreaView style={styleSheet.MainContainer}>
+    <View style={styleSheet.MainContainer}>
       <FlatList
         ref={flatList}
         data={spendingsData}
@@ -25,7 +25,7 @@ export default function SliderCard({ onViewableItemsChanged, spendingsData,viewa
         }}
       />
 
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -33,7 +33,6 @@ const styleSheet = StyleSheet.create({
 
   MainContainer: {
     flex: 3,
-    backgroundColor: 'white',
     justifyContent: 'flex-start',
   },
 
