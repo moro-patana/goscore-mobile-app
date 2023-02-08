@@ -15,6 +15,7 @@ import CustomSwitch from '../components/CustomSwitch';
 import SliderCard from '../components/SliderCard';
 import { format } from 'date-fns';
 import { parseISO } from 'date-fns/fp';
+import Category from '../components/Category';
 
 
 const data = [
@@ -217,12 +218,15 @@ const data = [
 }
 ]
 function TransactionsScreen() {
+  const [prevDate, setPrevDate] = React.useState('');
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [selectedTab, setSelectedTab] = React.useState(1)
   const onSelectSwitch = index => {
-    console.log('selected');
+    setSelectedTab(index)
+    
   };
 
-  const [prevDate, setPrevDate] = React.useState('');
-  const [activeIndex, setActiveIndex] = React.useState(0)
+
 
   React.useEffect(() => {
     const previous = data.reduce((a, b) => {
@@ -295,7 +299,7 @@ const filteredTransactions = data.filter((transaction) =>  format(parseISO(trans
       <View style={{ flex: 3, paddingLeft: 15, paddingRight: 17, paddingTop: 20 }}>
         <FlatList
           data={filteredTransactions}
-          renderItem={({ item }) => <Transaction item={item} />}
+          renderItem={({ item }) => selectedTab === 1 ? <Transaction item={item} />:<Category item={item} totalSpending={totalSpending}/>}
           pagingEnabled
           snapToAlignment="center"
           showsHorizontalScrollIndicator={false}

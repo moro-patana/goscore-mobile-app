@@ -21,7 +21,7 @@ function Transaction({item}) {
           <Text style={styles.bankName}>{item.description}</Text>
         </View>
       </View>
-      <View>
+      <View style={{flexDirection: 'column', alignItems: 'flex-end'}}>
         <Text style={styles.amount}>{value} kr</Text>
         <Text style={styles.date}>{formatDate}</Text>
       </View>
