@@ -5430,6 +5430,11 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.6"
 
+moment@^2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
@@ -6049,6 +6054,11 @@ react-native-linear-gradient@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"
   integrity sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ==
+
+react-native-pin-view@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-pin-view/-/react-native-pin-view-3.0.3.tgz#2294369db926b39a6b1288f26254683c168413c0"
+  integrity sha512-0xCQBpwrP06wDjUlfwViFMzi1ph+9Y1ytYWkGtdIcy9XcR5RK94DOGDisNUb8LrvHjVIoeuoDIkYPVcvv43GGA==
 
 react-native-safe-area-context@^4.5.0:
   version "4.5.0"
