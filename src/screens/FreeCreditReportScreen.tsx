@@ -1,29 +1,29 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   Text,
   StyleSheet,
   Image,
   ImageBackground,
   Dimensions,
-} from 'react-native';
-const {width, height} = Dimensions.get('window');
-import Layout from '../components/Layout';
+} from 'react-native'
+const {width, height} = Dimensions.get('window')
+import Layout from '../components/Layout'
 const BudgetAtGlanceScreen = ({swiperRef, keyNumber}) => {
   return (
     <Layout swiperRef={swiperRef} keyNumber={keyNumber}>
       <ImageBackground
         source={require('../../assets/images/free_credit_report.png')}
-        resizeMode="contain"
+        resizeMode='contain'
         style={{
           width: width,
           height: height,
-          top: '-35%',
+          top: '-40%',
           right: '18%',
           position: 'absolute',
         }}></ImageBackground>
       <Image
         source={require('../../assets/images/free_credit_report_img2.png')}
-        style={{position: 'absolute', top: '50%', right: '-55%'}}></Image>
+        style={{position: 'absolute', top: '50%', right: '-60%'}}></Image>
       <Text style={styles.baseTitle}>
         Free
         <Text style={styles.innerTitle}> credit</Text>
@@ -34,9 +34,9 @@ const BudgetAtGlanceScreen = ({swiperRef, keyNumber}) => {
         do you deserve!
       </Text>
     </Layout>
-  );
-};
-export default BudgetAtGlanceScreen;
+  )
+}
+export default BudgetAtGlanceScreen
 const styles = StyleSheet.create({
   baseTitle: {
     fontStyle: 'normal',
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     paddingTop: Math.round(width * 0.08),
     paddingRight: 45,
   },
-});
+})

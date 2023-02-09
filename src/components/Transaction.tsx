@@ -1,23 +1,24 @@
-import * as React from 'react';
-import {Image, View, Text, StyleSheet} from 'react-native';
+import * as React from 'react'
+import {Image, View, Text, StyleSheet} from 'react-native'
 import {format, parseISO} from 'date-fns'
 
-function Transaction({item}) {
-  
-  const formatDate = format(parseISO(item.date), "MM.dd.yy")
+function Transaction ({item}) {
+  const formatDate = format(parseISO(item.date), 'MM.dd.yy')
   const value = parseFloat(
-    item.amount.replace("NOK", " ").replace(",", "").split(" ")
-  );
-  
+    item.amount.replace('NOK', ' ').replace(',', '').split(' '),
+  )
+
   return (
     <View style={styles.transaction}>
       <View style={{flexDirection: 'row', gap: 13, alignItems: 'center'}}>
         <Image
           style={styles.profile}
-          source={{uri:item.account.financialInstitution.logoUrl}}
+          source={{uri: item.account.financialInstitution.logoUrl}}
         />
         <View>
-          <Text style={styles.name}>{item.account.financialInstitution.name}</Text>
+          <Text style={styles.name}>
+            {item.account.financialInstitution.name}
+          </Text>
           <Text style={styles.bankName}>{item.description}</Text>
         </View>
       </View>
@@ -26,10 +27,10 @@ function Transaction({item}) {
         <Text style={styles.date}>{formatDate}</Text>
       </View>
     </View>
-  );
+  )
 }
 
-export default Transaction;
+export default Transaction
 const styles = StyleSheet.create({
   transaction: {
     flexDirection: 'row',
@@ -67,4 +68,4 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     color: '#999999',
   },
-});
+})

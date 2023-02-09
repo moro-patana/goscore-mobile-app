@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {View, Image, StyleSheet, Dimensions} from 'react-native';
-import {sm} from './SizeHelper';
-import CustomButton from './Button';
+import * as React from 'react'
+import {View, Image, StyleSheet, Dimensions} from 'react-native'
+import {sm} from './SizeHelper'
+import CustomButton from './Button'
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 export const Layout = ({children, swiperRef, keyNumber}) => (
   <View style={styles.container}>
@@ -17,17 +17,17 @@ export const Layout = ({children, swiperRef, keyNumber}) => (
       <View
         style={{
           ...styles.buttonWrapper,
-          paddingLeft: keyNumber === 1 ? Math.round(width * 0.36) : 0,
+          paddingLeft: keyNumber === 0 ? Math.round(width * 0.36) : 0,
         }}>
         <View
           style={{
             ...styles.hairLine,
-            display: keyNumber === 1 ? 'none' : 'flex',
+            display: keyNumber === 0 ? 'none' : 'flex',
           }}
         />
         <CustomButton
-          buttonColor="#FFFFFF"
-          text={`${keyNumber === 3 ? 'Getting started' : 'Next'}`}
+          buttonColor='#FFFFFF'
+          text={`${keyNumber === 2 ? 'Getting started' : 'Next'}`}
           textColor={'#2E6CC6'}
           buttonStyle={styles.button}
           textStyle={{fontSize: 17}}
@@ -37,13 +37,14 @@ export const Layout = ({children, swiperRef, keyNumber}) => (
       </View>
     </View>
   </View>
-);
-export default Layout;
+)
+export default Layout
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
     overflow: 'hidden',
+    backgroundColor: '#fff',
   },
   box: {
     flex: 3,
@@ -79,4 +80,4 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#2E6CC6',
   },
-});
+})

@@ -1,48 +1,30 @@
-import * as React from 'react';
-import {StyleSheet, View, Dimensions, Image} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-const {width, height} = Dimensions.get('window');
-export default function HomeScreen() {
+import * as React from 'react'
+import Swiper from 'react-native-swiper'
+
+import BudgetAtGlanceScreen from './BudgetAtGlanceScreen'
+import SpendingTrackingScreen from './SpendingTrackingScreen'
+import FreeCreditReportScreen from './FreeCreditReportScreen'
+import {useRef, useState} from 'react'
+
+const Home = () => {
+  const swiperRef = useRef(null)
+  const [keyNumber, setKeyNumber] = useState(0)
+
+  const handleIndexChange = (index: number) => {
+    setKeyNumber(index)
+  }
   return (
-    <View style={styles.contentWrapper}>
-      <LinearGradient
-        colors={[
-          '#00DB90',
-          '#2E6CC6',
-          '#2E6CC6',
-          '#2E6CC6',
-          '#2E6CC6',
-          '#00DB90',
-        ]}
-        style={styles.linearGradient}
-        start={{x: 1, y: 0}}>
-        <View>
-          <Image
-            source={require('../../assets/images/home_screen_bg.png')}
-            style={{width: '100%'}}></Image>
-        </View>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('../../assets/images/goscore_logo_lg.png')}></Image>
-        </View>
-      </LinearGradient>
-    </View>
-  );
+    <Swiper
+      ref={swiperRef}
+      loop={false}
+      showsPagination={false}
+      index={0}
+      onIndexChanged={handleIndexChange}>
+      <BudgetAtGlanceScreen swiperRef={swiperRef} keyNumber={keyNumber} />
+      <SpendingTrackingScreen swiperRef={swiperRef} keyNumber={keyNumber} />
+      <FreeCreditReportScreen swiperRef={swiperRef} keyNumber={keyNumber} />
+    </Swiper>
+  )
 }
-const styles = StyleSheet.create({
-  contentWrapper: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-  },
-  linearGradient: {
-    height: height,
-    width: width,
-  },
-  logoContainer: {
-    position: 'absolute',
-    top: '40%',
-    left: '20%',
-  },
-});
+
+export default Home

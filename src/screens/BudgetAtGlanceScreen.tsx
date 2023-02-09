@@ -1,22 +1,16 @@
-import * as React from 'react';
-import {
-  Text,
-  StyleSheet,
-  ImageBackground,
-  View,
-  Dimensions,
-} from 'react-native';
-import Layout from '../components/Layout';
-import {md, lg, xl} from '../components/SizeHelper';
+import * as React from 'react'
+import {Text, StyleSheet, ImageBackground, Dimensions} from 'react-native'
+import Layout from '../components/Layout'
+import {md, lg, xl} from '../components/SizeHelper'
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 const BudgetAtGlanceScreen = ({keyNumber, swiperRef}) => {
   return (
     <Layout swiperRef={swiperRef} keyNumber={keyNumber}>
       <ImageBackground
         source={require('../../assets/images/budget_at_glance.png')}
-        resizeMode="contain"
+        resizeMode='contain'
         style={{
           width: width,
           height: height,
@@ -32,9 +26,9 @@ const BudgetAtGlanceScreen = ({keyNumber, swiperRef}) => {
         economy
       </Text>
     </Layout>
-  );
-};
-export default BudgetAtGlanceScreen;
+  )
+}
+export default BudgetAtGlanceScreen
 const styles = StyleSheet.create({
   baseTitle: {
     fontStyle: 'normal',
@@ -58,4 +52,4 @@ const styles = StyleSheet.create({
     color: '#C4C4C4',
     paddingTop: Math.round(width * 0.08),
   },
-});
+})

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   Text,
   StyleSheet,
@@ -8,16 +8,16 @@ import {
   Linking,
   ImageBackground,
   Dimensions,
-} from 'react-native';
-import Layout from '../components/Layout';
-const {width, height} = Dimensions.get('window');
+} from 'react-native'
+import Layout from '../components/Layout'
+const {width, height} = Dimensions.get('window')
 
 const SpendingTrackingScreen = ({swiperRef, keyNumber}) => {
   return (
     <Layout swiperRef={swiperRef} keyNumber={keyNumber}>
       <ImageBackground
         source={require('../../assets/images/spending_tracking.png')}
-        resizeMode="cover"
+        resizeMode='cover'
         style={{
           width: width * 2,
           height: height,
@@ -32,7 +32,7 @@ const SpendingTrackingScreen = ({swiperRef, keyNumber}) => {
         <Text style={styles.description}>
           With{' '}
           <TouchableOpacity
-            style={{transform: [{translateY: 35}]}}
+            // style={{transform: [{translateY: 35}]}}
             onPress={() => Linking.openURL('https://goscore.me')}>
             <Image
               source={require('../../assets/images/goscore_logo.png')}
@@ -44,9 +44,9 @@ const SpendingTrackingScreen = ({swiperRef, keyNumber}) => {
         </Text>
       </View>
     </Layout>
-  );
-};
-export default SpendingTrackingScreen;
+  )
+}
+export default SpendingTrackingScreen
 const styles = StyleSheet.create({
   baseTitle: {
     fontStyle: 'normal',
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     lineHeight: 92,
     color: '#FFFFFF',
-    paddingBottom: Math.round(width * 0.08),
+    paddingVertical: Math.round(width * 0.2),
   },
   innerTitle: {
     fontStyle: 'normal',
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 33,
     color: '#C4C4C4',
-    paddingTop: Math.round(width * 0.08),
+    // paddingTop: Math.round(width * 0.5),
   },
-});
+})

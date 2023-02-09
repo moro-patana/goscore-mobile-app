@@ -35,85 +35,84 @@
 // const Tab = createBottomTabNavigator()
 // export default function App () {
 //   return (
-//     <NavigationContainer>
-//       <Tab.Navigator
-//         initialRouteName='Home'
-//         screenOptions={({route}) => ({
-//           tabBarIcon: ({focused, color, size}) => {
-//             let iconName
-//             let routeName = route.name
+// <NavigationContainer>
+//   <Tab.Navigator
+//     initialRouteName='Home'
+//     screenOptions={({route}) => ({
+//       tabBarIcon: ({focused, color, size}) => {
+//         let iconName
+//         let routeName = route.name
 
-//             if (routeName === 'Home') {
-//               iconName = focused ? 'home' : 'home-outline'
-//             } else if (routeName === 'Transaction') {
-//               iconName = focused ? 'bookmarks' : 'bookmarks-outline'
-//             } else if (routeName === 'Settings') {
-//               iconName = focused ? 'settings' : 'settings-outline'
-//             } else if (routeName === 'Support') {
-//               iconName = focused
-//                 ? 'chatbubble-ellipses'
-//                 : 'chatbubble-ellipses-outline'
-//             }
+//         if (routeName === 'Home') {
+//           iconName = focused ? 'home' : 'home-outline'
+//         } else if (routeName === 'Transaction') {
+//           iconName = focused ? 'bookmarks' : 'bookmarks-outline'
+//         } else if (routeName === 'Settings') {
+//           iconName = focused ? 'settings' : 'settings-outline'
+//         } else if (routeName === 'Support') {
+//           iconName = focused
+//             ? 'chatbubble-ellipses'
+//             : 'chatbubble-ellipses-outline'
+//         }
 
-//             return <Ionicons name={iconName} size={size} color={color} />
-//           },
-//           activeTintColor: 'tomato',
-//           inactiveTintColor: 'black',
-//           tabBarShowLabel: false,
-//           tabBarStyle: {padding: 10, height: 100, backgroundColor: 'white'},
-//         })}>
-//         <Tab.Screen
-//           name='Home'
-//           component={HomeScreen}
-//           options={{headerShown: false, tabBarStyle:{display:'none'}}}
-//         />
-//         <Tab.Screen
-//           name='Transaction'
-//           component={TransactionsScreen}
-//           options={{
-//             title: '',
-//             headerLeft: () => (
-//              <Text style={styles.title}>My Activity</Text>
-//             ),
-//             headerStyle: {
-//               backgroundColor: '#fff',
-//             },
-//             headerRight: () => (
-//               <TouchableOpacity style={{padding: 16}}>
-//               <Image source={require('./assets/images/plus-icon.png')}></Image>
-//             </TouchableOpacity>
-//             )
-//           }}
-//         />
-//         <Tab.Screen name='Support' component={SupportScreen} />
-//         <Tab.Screen name='Settings' component={SettingsScreen} />
-//       </Tab.Navigator>
-//     </NavigationContainer>
+//         return <Ionicons name={iconName} size={size} color={color} />
+//       },
+//       activeTintColor: 'tomato',
+//       inactiveTintColor: 'black',
+//       tabBarShowLabel: false,
+//       tabBarStyle: {padding: 10, height: 100, backgroundColor: 'white'},
+//     })}>
+//     <Tab.Screen
+//       name='Home'
+//       component={HomeScreen}
+//       options={{headerShown: false, tabBarStyle:{display:'none'}}}
+//     />
+//     <Tab.Screen
+//       name='Transaction'
+//       component={TransactionsScreen}
+//       options={{
+//         title: '',
+//         headerLeft: () => (
+//          <Text style={styles.title}>My Activity</Text>
+//         ),
+//         headerStyle: {
+//           backgroundColor: '#fff',
+//         },
+//         headerRight: () => (
+//           <TouchableOpacity style={{padding: 16}}>
+//           <Image source={require('./assets/images/plus-icon.png')}></Image>
+//         </TouchableOpacity>
+//         )
+//       }}
+//     />
+//     <Tab.Screen name='Support' component={SupportScreen} />
+//     <Tab.Screen name='Settings' component={SettingsScreen} />
+//   </Tab.Navigator>
+// </NavigationContainer>
 //   )
 // }
 
 // const styles = StyleSheet.create({
-//   title: {
-//     fontSize: 17,
-//     fontWeight: '400',
-//     lineHeight: 22,
-//     color: '#2E6CC6',
-//     padding: 16
-//   },
+// title: {
+//   fontSize: 17,
+//   fontWeight: '400',
+//   lineHeight: 22,
+//   color: '#2E6CC6',
+//   padding: 16
+// },
 // })
 
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import * as React from 'react'
 import LockScreen from './src/screens/lock/LockScreen'
-import PinCodeScreen from './src/screens/lock/PinCodeScreen'
-import Test from './src/screens/lock/LockScreen'
+import MainScreen from './src/screens/MainScreen'
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <LockScreen />
-      {/* <PinCodeScreen /> */}
-    </View>
+    <>
+      {/* <LockScreen /> */}
+      <MainScreen />
+    </>
   )
 }
 

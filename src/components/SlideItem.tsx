@@ -1,18 +1,45 @@
 import * as React from 'react'
 
-import {Text, Dimensions, View, StyleSheet} from 'react-native'
+import {Text, Dimensions, View, StyleSheet, Image} from 'react-native'
 import {LineChart} from 'react-native-chart-kit'
+import ArrowUp from '../../assets/images/arrow-up.png'
+import ArrowDown from '../../assets/images/arrow-down.png'
 
 const {width, height} = Dimensions.get('window')
-const SlideItem = ({item, totalSpending}) => {
+const SlideItem = ({item, totalSpending, allDataAmount, selectedTab}) => {
+  function percentage (percent, total) {
+    return ((percent / total) * 100).toFixed(2)
+  }
+  const percentResult = percentage(totalSpending, allDataAmount)
   return (
     <View>
       <Text style={styles.period}>{item.date}</Text>
 
       <View style={[styles.card, styles.elevation, styles.shadowProp]}>
-        <View style={{paddingLeft: 16}}>
-          <Text style={styles.title}>spent</Text>
-          <Text style={styles.totalSpending}>{totalSpending} Kr</Text>
+        <View
+          style={{
+            paddingHorizontal: 16,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+          }}>
+          <View style={{flexDirection: 'column'}}>
+            <Text style={styles.title}>spent</Text>
+            <Text style={styles.totalSpending}>{totalSpending} Kr</Text>
+          </View>
+          {selectedTab != 1 && (
+            <View style={styles.percentageWrapper}>
+              <Text
+                style={{
+                  ...styles.percentage,
+                  color: totalSpending > 0 ? '#00DB90' : '#EF253D',
+                }}>
+                {percentResult}%
+              </Text>
+              <Image source={totalSpending > 0 ? ArrowUp : ArrowDown}></Image>
+            </View>
+          )}
         </View>
 
         <LineChart
@@ -91,5 +118,16 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#999999',
     paddingLeft: 10,
+  },
+  percentageWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: 5,
+  },
+  percentage: {
+    fontSize: 13,
+    fontWeight: '400',
+    lineHeight: 18,
   },
 })
