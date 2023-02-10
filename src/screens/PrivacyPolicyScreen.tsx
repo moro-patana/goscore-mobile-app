@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   Image,
   Text,
@@ -8,8 +8,8 @@ import {
   Modal,
   Alert,
   TouchableOpacity,
-} from 'react-native';
-import PrivacyPolicyListItem from '../components/PrivacyPolicyListItem';
+} from 'react-native'
+import PrivacyPolicyListItem from '../components/PrivacyPolicyListItem'
 
 const privacyPolicyData = [
   {
@@ -30,16 +30,16 @@ const privacyPolicyData = [
     description:
       'Keep on paying down your open mortgage loan to lower your remaining balance, e.g., by applying more than the scheduled payment amount to the principal each month if you can. Keep on paying down your open mortgage loan to lower your remaining balance, e.g., by applying more than the scheduled payment amount to the principal each month if you can. Keep on paying down your open mortgage loan to lower your remaining balance, e.g., by applying more than the scheduled payment amount to the principal each month if you can.',
   },
-];
+]
 const PrivacyPolicyScreen = ({modalVisible, setModalVisible}) => {
   return (
     <Modal
-      animationType="slide"
+      animationType='slide'
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-        setModalVisible(!modalVisible);
+        Alert.alert('Modal has been closed.')
+        setModalVisible(!modalVisible)
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
@@ -85,10 +85,10 @@ const PrivacyPolicyScreen = ({modalVisible, setModalVisible}) => {
         </View>
       </View>
     </Modal>
-  );
-};
+  )
+}
 
-export default PrivacyPolicyScreen;
+export default PrivacyPolicyScreen
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    paddingTop: 30,
   },
   header: {
     flexDirection: 'row',
@@ -141,7 +142,6 @@ const styles = StyleSheet.create({
     paddingTop: 7,
   },
   title: {
-    fontFamily: 'AvenirNext',
     fontStyle: 'normal',
     fontWeight: '700',
     fontSize: 20,
@@ -151,10 +151,9 @@ const styles = StyleSheet.create({
     paddingBottom: 7,
   },
   itemWrapper: {
-    fontFamily: 'AvenirNext',
     fontWeight: '400',
     paddingVertical: 10,
     paddingLeft: 23,
     paddingRight: 22,
   },
-});
+})

@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import TransactionsScreen from './TransactionsScreen'
 import SettingsScreen from './SettingsScreen'
 import SupportScreen from './SupportScreen'
-import HomeScreen from './HomeScreen'
+
 const Tab = createBottomTabNavigator()
 
 const MainScreen = () => {
@@ -38,11 +38,6 @@ const MainScreen = () => {
           tabBarShowLabel: false,
           tabBarStyle: {padding: 10, height: 100, backgroundColor: 'white'},
         })}>
-        <Tab.Screen
-          name='Home'
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
         <Tab.Screen
           name='Transaction'
           component={TransactionsScreen}

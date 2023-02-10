@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {useState} from 'react';
+import * as React from 'react'
+import {useState} from 'react'
 import {
   StyleSheet,
   View,
@@ -8,13 +8,13 @@ import {
   Text,
   TouchableOpacity,
   Linking,
-} from 'react-native';
-import CustomButton from '../components/Button';
-import PrivacyPolicyScreen from './PrivacyPolicyScreen';
-const {width, height} = Dimensions.get('window');
+} from 'react-native'
+import CustomButton from '../components/Button'
+import PrivacyPolicyScreen from './PrivacyPolicyScreen'
+const {width, height} = Dimensions.get('window')
 
-export default function AddBankHomeScreen() {
-  const [modalVisible, setModalVisible] = useState(false);
+export default function AddBankHomeScreen ({navigation}) {
+  const [modalVisible, setModalVisible] = useState(false)
 
   return (
     <View style={styles.contentWrapper}>
@@ -28,7 +28,7 @@ export default function AddBankHomeScreen() {
       </View>
       <View style={styles.content}>
         <CustomButton
-          buttonColor="#FFFFFF"
+          buttonColor='#FFFFFF'
           text={"Let's start"}
           textColor={'#2E6CC6'}
           buttonStyle={styles.button}
@@ -56,7 +56,7 @@ export default function AddBankHomeScreen() {
         />
       )}
     </View>
-  );
+  )
 }
 const styles = StyleSheet.create({
   contentWrapper: {
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingTop: 129,
     paddingBottom: 65,
+    backgroundColor: '#fff',
   },
   linearGradient: {
     height: height,
@@ -101,7 +102,6 @@ const styles = StyleSheet.create({
   },
   contentFooter: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -114,4 +114,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: '#C4C4C4',
   },
-});
+})
