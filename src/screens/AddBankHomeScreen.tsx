@@ -7,7 +7,6 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  Linking,
 } from 'react-native'
 import CustomButton from '../components/Button'
 import PrivacyPolicyScreen from './PrivacyPolicyScreen'

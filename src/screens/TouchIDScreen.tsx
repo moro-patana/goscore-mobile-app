@@ -1,16 +1,9 @@
-import * as React from 'react';
-import {
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native';
-import TouchID from 'react-native-touch-id';
+import * as React from 'react'
+import {Image, TouchableOpacity, Text, View, StyleSheet} from 'react-native'
+import TouchID from 'react-native-touch-id'
 
-function TouchIDScreen() {
-  const [isAuth, setIsAuth] = React.useState(false);
+function TouchIDScreen () {
+  const [isAuth, setIsAuth] = React.useState(false)
   const optionalConfigObject = {
     title: 'Authentication Required',
     imageColor: '#e00606',
@@ -21,32 +14,32 @@ function TouchIDScreen() {
     fallbackLabel: 'Show Passcode',
     unifiedErrors: false,
     passcodeFallback: false,
-  };
+  }
   React.useEffect(() => {
-    handleBiometric();
-  });
+    handleBiometric()
+  })
   const handleBiometric = () => {
     TouchID.isSupported(optionalConfigObject).then(biometryType => {
       if (biometryType === 'FaceID') {
-        console.log('FaceID is supported.');
+        console.log('FaceID is supported.')
       } else {
-        console.log('TouchID is supported.');
+        console.log('TouchID is supported.')
         TouchID.authenticate('Authentication', optionalConfigObject)
           .then(success => {
-            console.log('Success', success);
-            setIsAuth(success);
+            console.log('Success', success)
+            setIsAuth(success)
           })
           .catch(error => {
-            console.log(error);
-          });
+            console.log(error)
+          })
       }
-    });
-  };
+    })
+  }
   return (
     <View style={styles.container}>
       <Image
         source={require('../../assets/images/touch-id-bg.png')}
-        resizeMode="cover"
+        resizeMode='cover'
         style={{
           width: '100%',
           height: '90%',
@@ -71,10 +64,10 @@ function TouchIDScreen() {
         </TouchableOpacity>
       </View>
     </View>
-  );
+  )
 }
 
-export default TouchIDScreen;
+export default TouchIDScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -113,4 +106,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#C4C4C4',
   },
-});
+})

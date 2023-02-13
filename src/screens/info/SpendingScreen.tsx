@@ -9,7 +9,6 @@ import {
   Linking,
 } from 'react-native'
 const {width, height} = Dimensions.get('window')
-console.log(width)
 
 const SpendingScreen = ({navigation}) => {
   return (

@@ -1,15 +1,6 @@
 import * as React from 'react'
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  FlatList,
-} from 'react-native'
+import {SafeAreaView, View, StyleSheet, FlatList} from 'react-native'
 import Transaction from '../components/Transaction'
-import {sm} from '../components/SizeHelper'
 import ChartHeader from '../components/ChartHeader'
 import CustomSwitch from '../components/CustomSwitch'
 import SliderCard from '../components/SliderCard'
@@ -237,7 +228,7 @@ const data = [
     originalDescription: 'MG Tech AS',
   },
 ]
-function TransactionsScreen () {
+function TrsnsactionsScreen ({navigation}) {
   const [prevDate, setPrevDate] = React.useState('')
   const [activeIndex, setActiveIndex] = React.useState(0)
   const [selectedTab, setSelectedTab] = React.useState(1)
@@ -330,7 +321,11 @@ function TransactionsScreen () {
             selectedTab === 1 ? (
               <Transaction item={item} />
             ) : (
-              <Category item={item} totalSpending={totalSpending} />
+              <Category
+                item={item}
+                totalSpending={totalSpending}
+                navigation={navigation}
+              />
             )
           }
           pagingEnabled
@@ -343,7 +338,7 @@ function TransactionsScreen () {
   )
 }
 
-export default TransactionsScreen
+export default TrsnsactionsScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
