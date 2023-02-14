@@ -6,14 +6,13 @@ import IncomeIcon from '../../assets/images/income.png'
 import CarIcon from '../../assets/images/car.png'
 import ArrowUp from '../../assets/images/arrow-up.png'
 import ArrowDown from '../../assets/images/arrow-down.png'
-function Category ({item, totalSpending, navigation}) {
-  const value = parseFloat(
-    item.amount.replace('NOK', ' ').replace(',', '').split(' '),
-  )
+
+function Category ({item, totalSumCategoriesAmount, navigation}) {
+  const percentage = (item.totalAmount / totalSumCategoriesAmount) * 100
 
   const getCategoryIcon = category => {
     switch (category) {
-      case 'traveling':
+      case 'transport':
         return TravelingIcon
       case 'health':
         return HealthIcon
@@ -28,7 +27,7 @@ function Category ({item, totalSpending, navigation}) {
 
   const getCategoryName = category => {
     switch (category) {
-      case 'traveling':
+      case 'transport':
         return 'traveling'
       case 'health':
         return 'health'
@@ -42,40 +41,33 @@ function Category ({item, totalSpending, navigation}) {
         return null
     }
   }
-  const total = totalSpending.reduce((partialSum, a) => partialSum + a, 0)
-  function percentage (percent, total) {
-    return ((percent / total) * 100).toFixed(2)
-  }
-
-  const percentResult = percentage(value, total)
 
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('ItemDetails', {item})}>
       <View style={styles.category}>
         <View style={{flexDirection: 'row', gap: 13, alignItems: 'center'}}>
-          <Image
-            style={styles.profile}
-            source={getCategoryIcon(item.category.top)}
-          />
+          <Image style={styles.profile} source={getCategoryIcon(item.name)} />
           <View>
             <Text style={styles.categoryName}>
-              {getCategoryName(item.category.top)}
+              {getCategoryName(item.name)}
             </Text>
-            <Text style={styles.bankName}>1 Transaction</Text>
+            <Text style={styles.bankName}>
+              {item.count} {item.count > 1 ? 'Transactions' : 'Transaction'}
+            </Text>
           </View>
         </View>
         <View>
-          <Text style={styles.amount}>{Math.abs(value)} kr</Text>
+          <Text style={styles.amount}>{Math.abs(item.totalAmount)} kr</Text>
           <View style={styles.percentageWrapper}>
             <Text
               style={{
                 ...styles.percentage,
-                color: value > 0 ? '#00DB90' : '#EF253D',
+                color: percentage > 0 ? '#00DB90' : '#EF253D',
               }}>
-              {percentResult}%
+              {percentage.toFixed(2)}%
             </Text>
-            <Image source={value > 0 ? ArrowUp : ArrowDown}></Image>
+            <Image source={percentage > 0 ? ArrowUp : ArrowDown}></Image>
           </View>
         </View>
       </View>

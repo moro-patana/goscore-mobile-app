@@ -1,15 +1,14 @@
-import {StyleSheet, Text, View, Image} from 'react-native'
+import {StyleSheet, Text, View, Image, FlatList} from 'react-native'
 import * as React from 'react'
 import TravelingIcon from '../../assets/images/traveling.png'
 import HealthIcon from '../../assets/images/health.png'
 import IncomeIcon from '../../assets/images/income.png'
 import CarIcon from '../../assets/images/car.png'
+import Transaction from './Transaction'
 
 const CategoryDetails = ({route, navigation}) => {
   const item = route.params.item
-  const value = parseFloat(
-    item.amount.replace('NOK', ' ').replace(',', '').split(' '),
-  )
+
   const getCategoryIcon = category => {
     switch (category) {
       case 'traveling':
@@ -48,12 +47,9 @@ const CategoryDetails = ({route, navigation}) => {
         source={require('../../assets/images/category-details-bg.png')}
         style={styles.bigImage}
       />
-      <Image
-        source={getCategoryIcon(item.category.top)}
-        style={styles.smallImage}
-      />
-      <View>
-        <Text style={styles.amount}>{value} kr</Text>
+      <Image source={getCategoryIcon(item.name)} style={styles.smallImage} />
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        <Text style={styles.amount}>{Math.abs(item.totalAmount)} kr</Text>
         <View
           style={{
             flexDirection: 'column',
@@ -61,11 +57,26 @@ const CategoryDetails = ({route, navigation}) => {
             justifyContent: 'center',
             paddingTop: 10,
           }}>
-          <Text style={styles.category}>
-            {getCategoryName(item.category.top)}
-          </Text>
-          <Text style={styles.description}>{item.description}</Text>
+          <Text style={styles.category}>{getCategoryName(item.name)}</Text>
+          {/* <Text style={styles.description}>{item.description}</Text> */}
         </View>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          paddingHorizontal: 16,
+          paddingTop: 70,
+        }}>
+        <Text style={styles.relatedTransactionTitle}>Related transactions</Text>
+        <FlatList
+          data={item.transactions}
+          renderItem={({item}) => <Transaction item={item} />}
+          pagingEnabled
+          snapToAlignment='center'
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
     </View>
   )
@@ -116,5 +127,12 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: '#2E6CC6',
     padding: 16,
+  },
+  relatedTransactionTitle: {
+    fontSize: 17,
+    fontWeight: '700',
+    lineHeight: 23,
+    color: '#2E6CC6',
+    textAlign: 'center',
   },
 })

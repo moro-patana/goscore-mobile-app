@@ -59,7 +59,7 @@ const TabNavStackNavigator = () => {
               onPress={() => navigation.goBack()}
             />
           ),
-          headerTitle: route.params?.item.category.top,
+          headerTitle: route.params?.item.name,
           headerTitleStyle: {
             fontWeight: '600',
             fontSize: 17,

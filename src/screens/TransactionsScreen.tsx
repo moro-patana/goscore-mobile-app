@@ -28,7 +28,7 @@ const data = [
     },
     amount: '21.00 NOK',
     category: {
-      name: 'other',
+      name: 'health',
       top: 'salary',
       type: 'income',
     },
@@ -55,7 +55,7 @@ const data = [
     },
     amount: '-1,871.02 NOK',
     category: {
-      name: 'other',
+      name: 'health',
       top: 'misc',
       type: 'expenses',
     },
@@ -82,7 +82,7 @@ const data = [
     },
     amount: '2,116.00 NOK',
     category: {
-      name: 'other',
+      name: 'salary',
       top: 'salary',
       type: 'income',
     },
@@ -110,7 +110,7 @@ const data = [
     },
     amount: '-1,71.02 NOK',
     category: {
-      name: 'other',
+      name: 'transport',
       top: 'misc',
       type: 'expenses',
     },
@@ -136,9 +136,9 @@ const data = [
       type: 'checking',
       updatedAt: '2021-10-04T03:48:05Z',
     },
-    amount: '171.02 NOK',
+    amount: '12.02 NOK',
     category: {
-      name: 'other',
+      name: 'transport',
       top: 'misc',
       type: 'expenses',
     },
@@ -165,7 +165,7 @@ const data = [
     },
     amount: '871.02 NOK',
     category: {
-      name: 'other',
+      name: 'salary',
       top: 'misc',
       type: 'expenses',
     },
@@ -192,7 +192,7 @@ const data = [
     },
     amount: '20.00 NOK',
     category: {
-      name: 'other',
+      name: 'salary',
       top: 'salary',
       type: 'income',
     },
@@ -219,7 +219,7 @@ const data = [
     },
     amount: '-871.02 NOK',
     category: {
-      name: 'other',
+      name: 'salary',
       top: 'misc',
       type: 'expenses',
     },
@@ -232,6 +232,7 @@ function TrsnsactionsScreen ({navigation}) {
   const [prevDate, setPrevDate] = React.useState('')
   const [activeIndex, setActiveIndex] = React.useState(0)
   const [selectedTab, setSelectedTab] = React.useState(1)
+
   const onSelectSwitch = index => {
     setSelectedTab(index)
   }
@@ -292,6 +293,38 @@ function TrsnsactionsScreen ({navigation}) {
     0,
   )
 
+  type CategoryStats = {totalAmount: number; count: number; transactions: any}
+  type Categories = {[name: string]: CategoryStats}
+
+  const categories: Categories = filteredTransactions.reduce((acc, curr) => {
+    const categoryName = curr.category.name
+    acc[categoryName] = acc[categoryName] || {
+      totalAmount: 0,
+      count: 0,
+      transactions: [],
+    }
+    ;(acc[categoryName].totalAmount += parseFloat(
+      curr.amount.replace('NOK', ' ').replace(',', ''),
+    )),
+      (acc[categoryName].count += 1)
+    acc[categoryName].transactions.push(curr)
+    return acc
+  }, {})
+
+  const categoriesArray = Object.entries(categories).map(
+    ([name, {totalAmount, count, transactions}]) => ({
+      name,
+      totalAmount,
+      count,
+      transactions,
+    }),
+  )
+
+  const totalSumCategoriesAmount = categoriesArray.reduce(
+    (acc, curr) => acc + curr.totalAmount,
+    0,
+  )
+
   return (
     <SafeAreaView style={styles.container}>
       <ChartHeader income={34.65} spendings={totalSpending[activeIndex]} />
@@ -315,24 +348,31 @@ function TrsnsactionsScreen ({navigation}) {
       </View>
       <View
         style={{flex: 2, paddingLeft: 15, paddingRight: 17, paddingTop: 20}}>
-        <FlatList
-          data={filteredTransactions}
-          renderItem={({item}) =>
-            selectedTab === 1 ? (
-              <Transaction item={item} />
-            ) : (
+        {selectedTab === 1 ? (
+          <FlatList
+            data={filteredTransactions}
+            renderItem={({item}) => <Transaction item={item} />}
+            pagingEnabled
+            snapToAlignment='center'
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        ) : (
+          <FlatList
+            data={categoriesArray}
+            renderItem={({item}) => (
               <Category
                 item={item}
-                totalSpending={totalSpending}
+                totalSumCategoriesAmount={totalSumCategoriesAmount}
                 navigation={navigation}
               />
-            )
-          }
-          pagingEnabled
-          snapToAlignment='center'
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-        />
+            )}
+            pagingEnabled
+            snapToAlignment='center'
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
       </View>
     </SafeAreaView>
   )
