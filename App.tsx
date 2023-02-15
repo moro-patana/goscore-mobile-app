@@ -1,15 +1,14 @@
 import React from 'react'
 import {NavigationContainer} from '@react-navigation/native'
 import TabNavigator from './src/components/tab-navigator/TabNavigator'
-import InfoNavigator from './src/screens/info/InfoNavigator'
+import StackNavigator from './src/screens/stack-navigator/StackNavigator'
 
 const App = () => {
-  const hasAccount = true
+  const hasAccount = false
   return (
     <NavigationContainer>
-      {hasAccount ? <TabNavigator /> : <InfoNavigator />}
+      {hasAccount ? <TabNavigator /> : <StackNavigator />}
     </NavigationContainer>
   )
 }
-
 export default App

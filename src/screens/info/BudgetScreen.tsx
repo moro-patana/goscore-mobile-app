@@ -1,42 +1,33 @@
 import * as React from 'react'
 import {
   View,
+  Text,
   Image,
   StyleSheet,
-  Dimensions,
-  Text,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native'
-const {width, height} = Dimensions.get('window')
-
-const BudgetScreen = ({navigation}) => {
+const {width} = Dimensions.get('window')
+const BudgetScreen = ({onNext}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('../../../assets/images/budget_at_glance.png')}
-          style={styles.backgroundImage}
-        />
-      </View>
+    <View style={[styles.container, {width: width}]}>
       <View style={styles.titleContainer}>
         <Text style={styles.firstPart}>Your Budget</Text>
         <Text style={styles.secondPart}>at a glance</Text>
       </View>
-      <View style={styles.descriptionWrapper}>
-        <Text style={styles.description}>
+      <View style={styles.description}>
+        <Text style={styles.descriptionText}>
           You are just 2 minutes away from gaining control over your personal
           economy
         </Text>
       </View>
-      <View style={styles.footerWrapper}>
+      <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
         <View style={styles.logoContainer}>
           <Image source={require('../../../assets/images/goscore_logo.png')} />
         </View>
         <View style={styles.nextButtonWrapper}>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => navigation.navigate('SpendingScreen')}>
-            <Text style={styles.nextButtonText}>Next</Text>
+          <TouchableOpacity style={styles.button} onPress={onNext}>
+            <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
           <View style={styles.line} />
         </View>
@@ -48,27 +39,12 @@ const BudgetScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  imageContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
-  backgroundImage: {
-    position: 'absolute',
-    top: -height / 6,
-    right: -width / 1.5,
-    width: '100%',
-    height: '60%',
-    overflow: 'visible',
+    justifyContent: 'center',
   },
   titleContainer: {
-    flex: 2,
-    flexDirection: 'column',
+    flex: 3,
+    justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingTop: 75,
     paddingLeft: 50,
     paddingRight: 23,
   },
@@ -84,44 +60,38 @@ const styles = StyleSheet.create({
     lineHeight: 92,
     fontWeight: '700',
   },
-  descriptionWrapper: {
-    flex: 1,
-    paddingLeft: width / 6,
-    paddingRight: width / 12,
-  },
   description: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    paddingLeft: 50,
+    paddingRight: 23,
+  },
+  descriptionText: {
     fontSize: 24,
     lineHeight: 33,
-    fontWeight: '700',
     color: '#C4C4C4',
   },
-  footerWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    paddingBottom: 20,
-  },
-  logoContainer: {
-    alignItems: 'center',
-  },
 
+  logoContainer: {
+    paddingBottom: 37,
+  },
   nextButtonWrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'baseline',
     justifyContent: 'center',
     paddingLeft: width / 2.5,
-    flex: 1,
-    paddingBottom: 55,
   },
-  nextButton: {
-    backgroundColor: 'transparent',
-    paddingVertical: 2,
-    paddingHorizontal: 19,
+  button: {
+    backgroundColor: '#fff',
     borderRadius: 50,
+    paddingHorizontal: 19,
+    paddingVertical: 2,
+    marginBottom: 62,
     borderWidth: 1,
     borderColor: '#2E6CC6',
   },
-  nextButtonText: {
+  buttonText: {
     color: '#2E6CC6',
     fontSize: 17,
     lineHeight: 23,
