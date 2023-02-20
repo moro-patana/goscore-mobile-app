@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-} from 'react-native'
-const {width} = Dimensions.get('window')
+} from 'react-native';
+const {width} = Dimensions.get('window');
 const CreditReportScreen = ({navigation}) => {
   return (
     <View style={[styles.container, {width: width}]}>
@@ -27,8 +27,8 @@ const CreditReportScreen = ({navigation}) => {
           source={require('../../../assets/images/free_credit_report_bg.png')}
           style={{
             position: 'absolute',
-            bottom: '5%',
-            left: '70%',
+            bottom: '10%',
+            left: '75%',
           }}
         />
       </View>
@@ -47,8 +47,8 @@ const CreditReportScreen = ({navigation}) => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    paddingLeft: 50,
-    paddingRight: 23,
+    paddingLeft: 86,
+    paddingRight: 77,
   },
   firstPart: {
     fontSize: 96,
@@ -81,13 +81,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   description: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     paddingLeft: 50,
     paddingRight: 68,
   },
   descriptionText: {
+    fontWeight: '700',
     fontSize: 24,
     lineHeight: 33,
     color: '#C4C4C4',
@@ -120,6 +121,6 @@ const styles = StyleSheet.create({
     height: 1,
     flex: 1,
   },
-})
+});
 
-export default CreditReportScreen
+export default CreditReportScreen;

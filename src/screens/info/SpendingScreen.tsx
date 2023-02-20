@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   Dimensions,
   Linking,
-} from 'react-native'
-const {width} = Dimensions.get('window')
+} from 'react-native';
+const {width} = Dimensions.get('window');
 const SpendingScreen = ({onNext}) => {
   return (
     <View style={[styles.container, {width: width}]}>
@@ -42,8 +42,8 @@ const SpendingScreen = ({onNext}) => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   description: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     paddingLeft: 50,
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontSize: 24,
+    fontWeight: '700',
     lineHeight: 33,
     color: '#C4C4C4',
   },
@@ -104,6 +105,6 @@ const styles = StyleSheet.create({
     height: 1,
     flex: 1,
   },
-})
+});
 
-export default SpendingScreen
+export default SpendingScreen;
