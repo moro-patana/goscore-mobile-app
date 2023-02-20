@@ -1,10 +1,10 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import {StyleSheet, View, FlatList, Dimensions} from 'react-native'
-import SlideItem from './SlideItem'
+import {StyleSheet, View, FlatList, Dimensions} from 'react-native';
+import SlideItem from './SlideItem';
 
-const {width, height} = Dimensions.get('window')
-export default function SliderCard ({
+const {width, height} = Dimensions.get('window');
+export default function SliderCard({
   onViewableItemsChanged,
   spendingsData,
   viewabilityConfig,
@@ -12,7 +12,7 @@ export default function SliderCard ({
   allDataAmount,
   selectedTab,
 }) {
-  const flatList = React.useRef<FlatList>(null)
+  const flatList = React.useRef<FlatList>(null);
 
   return (
     <View style={styleSheet.MainContainer}>
@@ -32,14 +32,17 @@ export default function SliderCard ({
         onViewableItemsChanged={onViewableItemsChanged.current}
         viewabilityConfig={viewabilityConfig.current}
         onScrollToIndexFailed={info => {
-          const wait = new Promise(resolve => setTimeout(resolve, 500))
+          const wait = new Promise(resolve => setTimeout(resolve, 500));
           wait.then(() => {
-            flatList.current?.scrollToIndex({index: info.index, animated: true})
-          })
+            flatList.current?.scrollToIndex({
+              index: info.index,
+              animated: true,
+            });
+          });
         }}
       />
     </View>
-  )
+  );
 }
 
 const styleSheet = StyleSheet.create({
@@ -74,4 +77,4 @@ const styleSheet = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
   },
-})
+});

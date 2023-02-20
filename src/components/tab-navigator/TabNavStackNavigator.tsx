@@ -1,16 +1,16 @@
-import {StyleSheet, Text, TouchableOpacity, Image} from 'react-native'
-import * as React from 'react'
-import {createStackNavigator} from '@react-navigation/stack'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import TransactionsScreen from '../../screens/TransactionsScreen'
-import CategoryDetails from '../CategoryDetails'
-const Stack = createStackNavigator()
+import {StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import * as React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import TransactionsScreen from '../../screens/TransactionsScreen';
+import CategoryDetails from '../CategoryDetails';
+const Stack = createStackNavigator();
 
 const BackButton = ({navigation, onPress}) => (
   <TouchableOpacity
     style={{flexDirection: 'row', alignItems: 'center'}}
     onPress={onPress}>
-    <Ionicons name='chevron-back' size={20} color='#2E6CC6' />
+    <Ionicons name="chevron-back" size={20} color="#2E6CC6" />
     <Text
       style={{
         fontSize: 17,
@@ -21,13 +21,13 @@ const BackButton = ({navigation, onPress}) => (
       Back
     </Text>
   </TouchableOpacity>
-)
+);
 
 const TabNavStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName='Home'>
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
-        name='HomeC'
+        name="HomeC"
         component={TransactionsScreen}
         options={{
           title: '',
@@ -50,7 +50,7 @@ const TabNavStackNavigator = () => {
         }}
       />
       <Stack.Screen
-        name='ItemDetails'
+        name="ItemDetails"
         component={CategoryDetails}
         options={({navigation, route}) => ({
           headerLeft: () => (
@@ -60,6 +60,7 @@ const TabNavStackNavigator = () => {
             />
           ),
           headerTitle: route.params?.item.name,
+          headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: '600',
             fontSize: 17,
@@ -75,9 +76,9 @@ const TabNavStackNavigator = () => {
 
           headerRight: () => (
             <Ionicons
-              name='information-circle-outline'
+              name="information-circle-outline"
               size={20}
-              color='#2E6CC6'
+              color="#2E6CC6"
             />
           ),
           headerLeftContainerStyle: {
@@ -89,10 +90,10 @@ const TabNavStackNavigator = () => {
         })}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
-export default TabNavStackNavigator
+export default TabNavStackNavigator;
 
 const styles = StyleSheet.create({
   title: {
@@ -102,4 +103,4 @@ const styles = StyleSheet.create({
     color: '#2E6CC6',
     padding: 16,
   },
-})
+});
