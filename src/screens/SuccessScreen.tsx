@@ -4,7 +4,6 @@ import {
   Text,
   View,
   StyleSheet,
-  FlatList,
   Modal,
   Alert,
   TouchableOpacity,
@@ -12,7 +11,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 const {width, height} = Dimensions.get('window');
-const UncategorizedScreen = () => {
+const SuccessScreen = () => {
   return (
     <Modal
       animationType="slide"
@@ -30,31 +29,8 @@ const UncategorizedScreen = () => {
                 source={require('../../assets/images/category-details-bg.png')}
                 style={styles.bigImage}
               />
-              <Image
-                source={require('../../assets/images/uncategorized-icon.png')}
-                style={styles.smallImage}
-              />
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  width: width,
-                  paddingHorizontal: 16,
-                }}>
-                <View>
-                  <TouchableOpacity
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 10,
-                    }}>
-                    <Image
-                      source={require('../../assets/images/white-chevron-left.png')}
-                    />
-                    <Text style={{color: '#fff', fontSize: 17}}>Back</Text>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.headerText}>Uncategorized</Text>
+
+              <View style={{alignSelf: 'flex-end'}}>
                 <TouchableOpacity>
                   <Image
                     source={require('../../assets/images/close-button.png')}
@@ -68,13 +44,7 @@ const UncategorizedScreen = () => {
               </View>
             </View>
             <View style={styles.contentWrapper}>
-              <Text style={styles.contentTitle}>Uncategorized</Text>
-              <Text style={styles.contentSubtitle}>
-                69% of your transactions are categorized.{' '}
-              </Text>
-              <Text style={styles.description}>
-                We found 6 transactions to improve your categorisation
-              </Text>
+              <Image source={require('../../assets/images/success-img.png')} />
             </View>
             <View
               style={{
@@ -83,7 +53,7 @@ const UncategorizedScreen = () => {
                 alignItems: 'center',
                 paddingBottom: 32,
               }}>
-              <TouchableOpacity style={{width: '80%'}}>
+              <TouchableOpacity style={{width: '30%'}}>
                 <LinearGradient
                   colors={['#2E6CC6', '#00DB90']}
                   style={{
@@ -101,9 +71,9 @@ const UncategorizedScreen = () => {
                       textAlign: 'center',
                       backgroundColor: 'white',
                       borderRadius: 30,
-                      paddingVertical: 11,
+                      paddingVertical: 12,
                     }}>
-                    Let's go
+                    Ok
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -115,7 +85,7 @@ const UncategorizedScreen = () => {
   );
 };
 
-export default UncategorizedScreen;
+export default SuccessScreen;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
@@ -149,39 +119,10 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     width: width,
   },
-
-  headerText: {
-    fontSize: 17,
-    lineHeight: 22,
-    color: '#fff',
-  },
   contentWrapper: {
-    paddingHorizontal: 16,
-    flex: 2,
+    flex: 3,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  },
-  contentTitle: {
-    fontSize: 36,
-    fontWeight: '700',
-    lineHeight: 49,
-    color: '#2E6CC6',
-    paddingBottom: 23,
-  },
-  contentSubtitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    lineHeight: 32,
-    color: '#2E6CC6',
-    textAlign: 'center',
-    paddingBottom: 5,
-  },
-  description: {
-    fontSize: 17,
-    fontWeight: '400',
-    lineHeight: 23,
-    color: '#2E6CC6',
-    textAlign: 'center',
   },
   backButtonWrapper: {
     paddingTop: 17,
@@ -193,10 +134,5 @@ const styles = StyleSheet.create({
     height: height / 2,
     position: 'absolute',
     top: '-100%',
-  },
-  smallImage: {
-    position: 'absolute',
-    top: height / 4.2,
-    left: '45%',
   },
 });
