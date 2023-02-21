@@ -1,45 +1,53 @@
-import {StyleSheet, Text, View, Image, FlatList} from 'react-native'
-import * as React from 'react'
-import TravelingIcon from '../../assets/images/traveling.png'
-import HealthIcon from '../../assets/images/health.png'
-import IncomeIcon from '../../assets/images/income.png'
-import CarIcon from '../../assets/images/car.png'
-import Transaction from './Transaction'
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  Dimensions,
+} from 'react-native';
+import * as React from 'react';
+import TravelingIcon from '../../assets/images/traveling.png';
+import HealthIcon from '../../assets/images/health.png';
+import IncomeIcon from '../../assets/images/income.png';
+import CarIcon from '../../assets/images/car.png';
+import Transaction from './Transaction';
+const {width} = Dimensions.get('window');
 const CategoryDetails = ({route, navigation}) => {
-  const item = route.params.item
+  const item = route.params.item;
+  console.log(width / 4.9, 'width');
 
   const getCategoryIcon = category => {
     switch (category) {
       case 'traveling':
-        return TravelingIcon
+        return TravelingIcon;
       case 'health':
-        return HealthIcon
+        return HealthIcon;
       case 'salary':
-        return IncomeIcon
+        return IncomeIcon;
       case 'car':
-        return CarIcon
+        return CarIcon;
       default:
-        return TravelingIcon
+        return TravelingIcon;
     }
-  }
+  };
 
   const getCategoryName = category => {
     switch (category) {
       case 'traveling':
-        return 'traveling'
+        return 'traveling';
       case 'health':
-        return 'health'
+        return 'health';
       case 'salary':
-        return 'income'
+        return 'income';
       case 'transport':
-        return 'transport'
+        return 'transport';
       case 'misc':
-        return 'other'
+        return 'other';
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -73,16 +81,16 @@ const CategoryDetails = ({route, navigation}) => {
           data={item.transactions}
           renderItem={({item}) => <Transaction item={item} />}
           pagingEnabled
-          snapToAlignment='center'
+          snapToAlignment="center"
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default CategoryDetails
+export default CategoryDetails;
 
 const styles = StyleSheet.create({
   container: {
@@ -101,8 +109,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '18%',
     left: '40%',
-    width: 83,
-    height: 82,
+    width: width / 4.9,
+    height: width / 4.9,
   },
   amount: {
     fontWeight: '700',
@@ -135,4 +143,4 @@ const styles = StyleSheet.create({
     color: '#2E6CC6',
     textAlign: 'center',
   },
-})
+});
