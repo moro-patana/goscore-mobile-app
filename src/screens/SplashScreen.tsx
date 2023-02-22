@@ -8,7 +8,7 @@ export default function CustomSplashScreen() {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 5000);
+    }, 8000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -17,6 +17,7 @@ export default function CustomSplashScreen() {
     <Animatable.View
       animation="fadeOut"
       duration={8000}
+      delay={2000}
       style={styles.container}>
       <Image
         source={require('../../assets/images/lock-bg.png')}
