@@ -19,7 +19,7 @@ function ChartHeader({income, spendings}) {
           width: width,
           height: height / 4,
           position: 'absolute',
-          top: '-110%',
+          top: '-80%',
         }}></ImageBackground>
       <View style={styles.header}>
         <View style={styles.headerItem}>
@@ -38,7 +38,7 @@ function ChartHeader({income, spendings}) {
 export default ChartHeader;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

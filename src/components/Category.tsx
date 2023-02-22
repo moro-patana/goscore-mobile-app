@@ -1,46 +1,46 @@
-import * as React from 'react'
-import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native'
-import TravelingIcon from '../../assets/images/traveling.png'
-import HealthIcon from '../../assets/images/health.png'
-import IncomeIcon from '../../assets/images/income.png'
-import CarIcon from '../../assets/images/car.png'
-import ArrowUp from '../../assets/images/arrow-up.png'
-import ArrowDown from '../../assets/images/arrow-down.png'
+import * as React from 'react';
+import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import TravelingIcon from '../../assets/images/traveling.png';
+import HealthIcon from '../../assets/images/health.png';
+import IncomeIcon from '../../assets/images/income.png';
+import CarIcon from '../../assets/images/car.png';
+import ArrowUp from '../../assets/images/arrow-up.png';
+import ArrowDown from '../../assets/images/arrow-down.png';
 
-function Category ({item, totalSumCategoriesAmount, navigation}) {
-  const percentage = (item.totalAmount / totalSumCategoriesAmount) * 100
+function Category({item, totalSum, navigation}) {
+  const percentage = (item.totalAmount / totalSum) * 100;
 
   const getCategoryIcon = category => {
     switch (category) {
       case 'transport':
-        return TravelingIcon
+        return TravelingIcon;
       case 'health':
-        return HealthIcon
+        return HealthIcon;
       case 'salary':
-        return IncomeIcon
+        return IncomeIcon;
       case 'car':
-        return CarIcon
+        return CarIcon;
       default:
-        return TravelingIcon
+        return TravelingIcon;
     }
-  }
+  };
 
   const getCategoryName = category => {
     switch (category) {
       case 'transport':
-        return 'traveling'
+        return 'traveling';
       case 'health':
-        return 'health'
+        return 'health';
       case 'salary':
-        return 'income'
+        return 'income';
       case 'transport':
-        return 'transport'
+        return 'transport';
       case 'misc':
-        return 'other'
+        return 'other';
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <TouchableOpacity
@@ -72,10 +72,10 @@ function Category ({item, totalSumCategoriesAmount, navigation}) {
         </View>
       </View>
     </TouchableOpacity>
-  )
+  );
 }
 
-export default Category
+export default Category;
 const styles = StyleSheet.create({
   category: {
     flexDirection: 'row',
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     lineHeight: 18,
   },
-})
+});

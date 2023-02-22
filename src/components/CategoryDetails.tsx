@@ -13,9 +13,9 @@ import IncomeIcon from '../../assets/images/income.png';
 import CarIcon from '../../assets/images/car.png';
 import Transaction from './Transaction';
 const {width} = Dimensions.get('window');
+
 const CategoryDetails = ({route, navigation}) => {
   const item = route.params.item;
-  console.log(width / 4.9, 'width');
 
   const getCategoryIcon = category => {
     switch (category) {

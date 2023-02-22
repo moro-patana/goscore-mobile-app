@@ -5,7 +5,6 @@ import TabNavStackNavigator from './TabNavStackNavigator';
 import SettingsScreen from '../../screens/SettingsScreen';
 import {Dimensions} from 'react-native';
 const {height} = Dimensions.get('window');
-console.log(height);
 
 const Tab = createBottomTabNavigator();
 function TabNavigator() {
@@ -33,8 +32,7 @@ function TabNavigator() {
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-          padding: 10,
-          height: height / 9.69,
+          height: height / 12,
           backgroundColor: 'white',
         },
       })}>
