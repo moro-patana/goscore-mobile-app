@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import TabNavigator from './src/components/tab-navigator/TabNavigator';
 import StackNavigator from './src/screens/stack-navigator/StackNavigator';
-import CustomSplashScreen from './src/screens/SplashScreen';
 export default function App() {
   const hasAccount = false;
   useEffect(() => {
@@ -11,11 +10,8 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <CustomSplashScreen />
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      {hasAccount ? <TabNavigator /> : <StackNavigator />}
+    </NavigationContainer>
   );
 }
