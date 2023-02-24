@@ -11,15 +11,15 @@ import {
 } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
-const SelectBankModal = () => {
+const SelectBankModal = ({modalVisible, onPress}) => {
   return (
     <Modal
       animationType="slide"
       transparent={true}
-      visible={true}
+      visible={modalVisible}
       onRequestClose={() => {
         Alert.alert('Modal has been closed.');
-        // setModalVisible(!modalVisible);
+        onPress();
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
@@ -38,6 +38,7 @@ const SelectBankModal = () => {
                 }}>
                 <View>
                   <TouchableOpacity
+                    onPress={onPress}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
@@ -50,7 +51,7 @@ const SelectBankModal = () => {
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.headerText}>Select your Bank</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onPress}>
                   <Image
                     source={require('../../assets/images/close-button.png')}
                   />

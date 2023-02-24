@@ -18,6 +18,7 @@ import CustomSwitch from '../components/CustomSwitch';
 import Category from '../components/Category';
 import ArrowUp from '../../assets/images/arrow-up.png';
 import ArrowDown from '../../assets/images/arrow-down.png';
+import SelectBankModal from '../components/SelectBankModal';
 
 const CARD_WIDTH = Dimensions.get('window').width * 0.8;
 const CARD_HEIGHT = Dimensions.get('window').height * 0.38;
@@ -280,7 +281,7 @@ interface GroupedData {
 type CategoryStats = {totalAmount: number; count: number; transactions: any};
 type Categories = {[name: string]: CategoryStats};
 
-const TransactionsScreen = ({navigation}) => {
+const TransactionsScreen = ({navigation, modalVisible, onPress}) => {
   const scrollViewRef = useRef<ScrollView>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedTab, setSelectedTab] = React.useState(1);
@@ -434,11 +435,7 @@ const TransactionsScreen = ({navigation}) => {
             Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0,
         }}>
         {sortedData.map((item, index) => (
-          <View
-            key={index}
-            style={{
-              height: Dimensions.get('window').height / 3,
-            }}>
+          <View key={index} style={{flex: 1, justifyContent: 'flex-end'}}>
             <View style={{paddingLeft: 16}}>
               <Text
                 style={{
@@ -538,7 +535,7 @@ const TransactionsScreen = ({navigation}) => {
           marginHorizontal: 28,
           marginBottom: 20,
           flex: 1,
-          justifyContent: 'flex-start',
+          justifyContent: 'flex-end',
         }}>
         <CustomSwitch
           selectionMode={1}
@@ -583,6 +580,9 @@ const TransactionsScreen = ({navigation}) => {
           />
         )}
       </View>
+      {modalVisible && (
+        <SelectBankModal modalVisible={modalVisible} onPress={onPress} />
+      )}
     </View>
   );
 };

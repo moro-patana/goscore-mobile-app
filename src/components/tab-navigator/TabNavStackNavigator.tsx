@@ -24,11 +24,16 @@ const BackButton = ({navigation, onPress}) => (
 );
 
 const TabNavStackNavigator = () => {
+  const [modalVisible, setModalVisible] = React.useState(false);
+
+  const toggleModalVisible = () => {
+    setModalVisible(!modalVisible);
+  };
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="HomeC"
-        component={TransactionsScreen}
+        // component={TransactionsScreen}
         options={{
           title: '',
           headerLeft: () => <Text style={styles.title}>My Activity</Text>,
@@ -36,7 +41,9 @@ const TabNavStackNavigator = () => {
             backgroundColor: '#fff',
           },
           headerRight: () => (
-            <TouchableOpacity style={{padding: 16}}>
+            <TouchableOpacity
+              style={{padding: 16}}
+              onPress={toggleModalVisible}>
               <Image
                 source={require('../../../assets/images/plus-icon.png')}></Image>
             </TouchableOpacity>
@@ -47,8 +54,15 @@ const TabNavStackNavigator = () => {
           headerRightContainerStyle: {
             paddingRight: 13,
           },
-        }}
-      />
+        }}>
+        {props => (
+          <TransactionsScreen
+            {...props}
+            modalVisible={modalVisible}
+            onPress={toggleModalVisible}
+          />
+        )}
+      </Stack.Screen>
       <Stack.Screen
         name="ItemDetails"
         component={CategoryDetails}
